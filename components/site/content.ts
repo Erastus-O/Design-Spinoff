@@ -14,7 +14,6 @@ export const event = {
   date: "Date announced soon",
   city: "Lagos, Nigeria",
   venue: "Venue to be announced",
-  hostCity: { name: "Lagos", lat: 6.52, lon: 3.38 },
 };
 
 export const announcement = {

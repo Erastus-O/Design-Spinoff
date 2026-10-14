@@ -1,8 +1,8 @@
-import { AfricaScan } from "@/components/site/africa-scan";
 import { announcement, event } from "@/components/site/content";
-import { ColorBar, Viewfinder, Wordmark } from "@/components/site/primitives";
+import { PanelStage } from "@/components/site/panel-stage";
+import { ColorBar, Wordmark } from "@/components/site/primitives";
 
-const shell = "relative mx-auto max-w-[1320px] border-x";
+const shell = "relative mx-auto max-w-[1320px]";
 
 export default function Home() {
   return (
@@ -34,7 +34,7 @@ function AnnouncementBar() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-4 py-3 sm:px-6">
         <a href="/" className="text-[15px] text-ink">
           <Wordmark />
@@ -52,8 +52,8 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="flex flex-1 flex-col border-b border-ink/10">
-      <div className={`${shell} flex w-full flex-1 flex-col border-ink/10`}>
+    <section className="flex flex-1 flex-col bg-white">
+      <div className={`${shell} flex w-full flex-1 flex-col`}>
         <div className="grid flex-1 lg:grid-cols-[1.05fr_1fr]">
           <div className="flex flex-col justify-between gap-10 px-4 pb-10 pt-10 sm:px-8 lg:px-12 lg:pb-10 lg:pt-12">
             <div>
@@ -108,20 +108,8 @@ function Hero() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center border-t border-ink/10 bg-white px-4 py-8 sm:px-8 lg:border-l lg:border-t-0 lg:p-10">
-            <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-ink/50">
-              <span>Design Spin-off — host scan</span>
-              <span>
-                {event.hostCity.lat.toFixed(2)}°N {event.hostCity.lon.toFixed(2)}°E
-              </span>
-            </div>
-            <Viewfinder className="mt-4 p-5 sm:p-8">
-              <AfricaScan lat={event.hostCity.lat} lon={event.hostCity.lon} label={event.hostCity.name} />
-            </Viewfinder>
-            <div className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.16em] text-ink/50">
-              <span>54 countries · 1 room</span>
-              <span>DSO/{event.edition.slice(2)}</span>
-            </div>
+          <div className="flex items-center justify-center px-4 pb-10 sm:px-8 lg:py-10 lg:pl-0 lg:pr-12">
+            <PanelStage />
           </div>
         </div>
         <ColorBar />

@@ -3,7 +3,7 @@
 @theme {
   --color-ink: #0e1620;
   --color-ink-2: #16212d;
-  --color-paper: #f7f6f2;
+  --color-paper: #ffffff;
   --color-cream: #faf4e8;
   --color-orange: #ff9550;
   --color-indigo: #5a67ff;
@@ -22,6 +22,19 @@ body {
   overflow-x: clip;
   background: var(--color-paper);
   color: var(--color-ink);
+}
+
+/* Spotlights on the panel stage sway slowly. */
+.stage-beam {
+  transform-box: view-box;
+  animation: beam-sway 7s ease-in-out infinite alternate;
+}
+.stage-beam--late {
+  animation-delay: -3.5s;
+}
+@keyframes beam-sway {
+  from { transform: rotate(-4deg); }
+  to { transform: rotate(4deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

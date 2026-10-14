@@ -18,39 +18,13 @@
   --font-wide: var(--font-archivo), sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
-}
-
 body {
   overflow-x: clip;
   background: var(--color-paper);
   color: var(--color-ink);
 }
 
-/* Ferndesk-style ruled strip used as a section divider. */
-.rule-strip {
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent 0 19px,
-    color-mix(in oklab, currentColor 14%, transparent) 19px 20px
-  );
-}
-
-/* Curved lattice behind the speaker cards (echoes the 2025 stage backdrop). */
-.lattice {
-  background-color: var(--color-indigo);
-  background-image:
-    radial-gradient(ellipse 140% 90% at 50% 120%, transparent 0 38%, var(--color-sun) 38.4% 39%, transparent 39.4% 50%, var(--color-sun) 50.4% 51%, transparent 51.4% 62%, var(--color-sun) 62.4% 63%, transparent 63.4%),
-    repeating-linear-gradient(100deg, transparent 0 26px, var(--color-sun) 26px 27.5px);
-  background-blend-mode: normal;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {

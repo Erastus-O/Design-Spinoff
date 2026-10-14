@@ -12,7 +12,20 @@ export default function Home() {
           that support HTML-in-canvas; elsewhere it scrolls normally.
         </p>
       </header>
-      <Bend className="h-[600px] overflow-hidden rounded-xl border border-black/10 dark:border-white/10">
+      <Bend
+        zone={120}
+        angle={65}
+        rounding={150}
+        perspective={1000}
+        ease={240}
+        smoothing={0.23}
+        tumble={0.5}
+        tilt={0.5}
+        direction="in"
+        top
+        bottom
+        className="h-[600px] overflow-hidden rounded-xl border border-black/10 dark:border-white/10"
+      >
         <div className="bg-[var(--background)] p-6">
           {items.map((n) => (
             <article

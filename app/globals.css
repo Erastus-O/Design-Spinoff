@@ -1,18 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fafafa;
-  --foreground: #171717;
+@theme {
+  --color-ink: #0e1620;
+  --color-ink-2: #16212d;
+  --color-paper: #f7f6f2;
+  --color-cream: #faf4e8;
+  --color-orange: #ff9550;
+  --color-indigo: #5a67ff;
+  --color-sun: #ffb627;
+  --color-pink: #f38bb0;
+  --color-teal: #3fb8af;
+
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-hand: var(--font-caveat), cursive;
+  --font-wide: var(--font-archivo), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  overflow-x: clip;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Ferndesk-style ruled strip used as a section divider. */
+.rule-strip {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 19px,
+    color-mix(in oklab, currentColor 14%, transparent) 19px 20px
+  );
+}
+
+/* Curved lattice behind the speaker cards (echoes the 2025 stage backdrop). */
+.lattice {
+  background-color: var(--color-indigo);
+  background-image:
+    radial-gradient(ellipse 140% 90% at 50% 120%, transparent 0 38%, var(--color-sun) 38.4% 39%, transparent 39.4% 50%, var(--color-sun) 50.4% 51%, transparent 51.4% 62%, var(--color-sun) 62.4% 63%, transparent 63.4%),
+    repeating-linear-gradient(100deg, transparent 0 26px, var(--color-sun) 26px 27.5px);
+  background-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

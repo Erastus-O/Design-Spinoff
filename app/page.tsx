@@ -14,7 +14,6 @@ import {
 } from "@/components/site/content";
 import { ContactForm, SponsorForm, TicketsAndRegister } from "@/components/site/forms";
 import { Header } from "@/components/site/header";
-import { Bend } from "@/components/ui/bend";
 import { ButtonLink, Draft, Section, SectionHead, TopicChip, Wordmark, topicById } from "@/components/site/primitives";
 
 export default function Home() {
@@ -204,41 +203,20 @@ function Agenda() {
           />
           <Draft>Draft programme</Draft>
         </div>
-        <div className="flex flex-col gap-3">
-          {/* The programme scrolls on the face of a cube: its top and bottom fold
-              over virtual edges in browsers with HTML-in-canvas, and it scrolls
-              as a plain panel everywhere else. */}
-          <Bend
-            zone={120}
-            angle={65}
-            rounding={150}
-            perspective={1000}
-            ease={240}
-            smoothing={0.23}
-            tumble={0.5}
-            tilt={0.5}
-            direction="in"
-            top
-            bottom
-            className="h-[34rem] overflow-hidden rounded-2xl bg-paper"
-          >
-            <ol aria-label="Programme" className="flex flex-col bg-paper">
-              {agenda.map((item) => (
-                <li
-                  key={item.time}
-                  className="grid grid-cols-[4rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-line px-6 py-5 last:border-b-0 sm:grid-cols-[5rem_minmax(0,1fr)]"
-                >
-                  <time className="text-sm text-muted tabular-nums">{item.time}</time>
-                  <div className="flex flex-col gap-2">
-                    <p className="text-[17px] leading-snug font-medium">{item.title}</p>
-                    {item.topic ? <TopicChip id={item.topic} /> : null}
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </Bend>
-          <p className="text-xs text-muted">Scroll the programme to see the full day.</p>
-        </div>
+        <ol className="flex flex-col overflow-hidden rounded-2xl bg-paper">
+          {agenda.map((item) => (
+            <li
+              key={item.time}
+              className="grid grid-cols-[4rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-line px-6 py-5 last:border-b-0 sm:grid-cols-[5rem_minmax(0,1fr)]"
+            >
+              <time className="text-sm text-muted tabular-nums">{item.time}</time>
+              <div className="flex flex-col gap-2">
+                <p className="text-[17px] leading-snug font-medium">{item.title}</p>
+                {item.topic ? <TopicChip id={item.topic} /> : null}
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </Section>
   );

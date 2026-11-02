@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent, type ReactNode } from "react";
 import { sponsorTiers, tickets, type TicketId } from "./content";
 import { buttonClass } from "./primitives";
+import { Reveal } from "./reveal";
 
 type Status = "idle" | "sending" | "sent";
 
@@ -177,11 +178,13 @@ export function TicketsAndRegister() {
   return (
     <>
       <div className="grid gap-4 md:grid-cols-3">
-        {tickets.map((t) => {
+        {tickets.map((t, i) => {
           const featured = "featured" in t && t.featured;
           return (
-            <article
+            <Reveal
+              as="article"
               key={t.id}
+              delay={i * 100}
               className={`flex flex-col gap-6 rounded-xl border p-6 ${
                 featured ? "border-indigo/60 bg-mist" : "border-line"
               }`}
@@ -213,7 +216,7 @@ export function TicketsAndRegister() {
               >
                 Choose {t.name}
               </button>
-            </article>
+            </Reveal>
           );
         })}
       </div>

@@ -14,6 +14,7 @@ import {
 } from "@/components/site/content";
 import { ContactForm, SponsorForm, TicketsAndRegister } from "@/components/site/forms";
 import { Header } from "@/components/site/header";
+import { Reveal } from "@/components/site/reveal";
 import { ButtonLink, Draft, Section, SectionHead, TopicChip, Wordmark, topicById } from "@/components/site/primitives";
 
 export default function Home() {
@@ -130,20 +131,37 @@ function Topics() {
         title="Five forces reshaping design work"
         body="Every session sits in one of five topics. Together they make up the designer’s dilemma: what to learn, what to keep and what to let go."
       />
-      <ul className="grid gap-px overflow-hidden rounded-2xl bg-line sm:grid-cols-2 lg:grid-cols-3">
-        {topics.map((t) => (
-          <li key={t.id} id={`topic-${t.id}`} className="flex scroll-mt-24 flex-col gap-5 bg-paper p-7">
-            <span aria-hidden className="h-4 w-12" style={{ background: t.color }} />
+      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {topics.map((t, i) => (
+          <Reveal
+            as="li"
+            key={t.id}
+            id={`topic-${t.id}`}
+            delay={i * 90}
+            className="group flex scroll-mt-24 flex-col gap-5 rounded-2xl bg-paper p-7"
+          >
+            <Reveal
+              as="span"
+              variant="drop"
+              delay={i * 90 + 200}
+              aria-hidden
+              className="block h-4 w-12 transition-[width] duration-300 group-hover:w-28"
+              style={{ background: t.color }}
+            />
             <h3 className="text-xl font-semibold tracking-tight">{t.name}</h3>
             <p className="text-[15px] leading-relaxed text-muted">{t.body}</p>
-          </li>
+          </Reveal>
         ))}
-        <li className="flex flex-col justify-between gap-6 bg-indigo p-7 text-white">
+        <Reveal
+          as="li"
+          delay={topics.length * 90}
+          className="flex flex-col justify-between gap-6 rounded-2xl bg-indigo p-7 text-white"
+        >
           <h3 className="text-xl font-semibold tracking-tight">Have a talk in one of these?</h3>
           <a href="#contact" className="w-fit text-sm font-medium underline underline-offset-4">
             Pitch it to us →
           </a>
-        </li>
+        </Reveal>
       </ul>
     </Section>
   );
@@ -168,11 +186,14 @@ function Speakers() {
         {speakerSlots.map((s, i) => {
           const t = topicById(s.topic);
           return (
-            <li key={i} className="flex flex-col gap-4">
+            <Reveal as="li" key={i} delay={(i % 4) * 90} className="group flex flex-col gap-4">
               <div className="relative flex aspect-square max-w-full flex-col justify-end overflow-hidden rounded-2xl bg-mist">
-                <span
+                <Reveal
+                  as="span"
+                  variant="drop"
+                  delay={(i % 4) * 90 + 250}
                   aria-hidden
-                  className="h-[22%]"
+                  className="block h-[22%] transition-[height] duration-300 group-hover:h-[40%]"
                   style={{ background: t.color, width: `${60 + ((i * 13) % 35)}%` }}
                 />
               </div>
@@ -181,7 +202,7 @@ function Speakers() {
                 <p className="text-sm text-muted">{s.format}</p>
                 <TopicChip id={s.topic} />
               </div>
-            </li>
+            </Reveal>
           );
         })}
       </ul>
@@ -204,9 +225,11 @@ function Agenda() {
           <Draft>Draft programme</Draft>
         </div>
         <ol className="flex flex-col overflow-hidden rounded-2xl bg-paper">
-          {agenda.map((item) => (
-            <li
+          {agenda.map((item, i) => (
+            <Reveal
+              as="li"
               key={item.time}
+              delay={i * 60}
               className="grid grid-cols-[4rem_minmax(0,1fr)] gap-x-4 gap-y-2 border-b border-line px-6 py-5 last:border-b-0 sm:grid-cols-[5rem_minmax(0,1fr)]"
             >
               <time className="text-sm text-muted tabular-nums">{item.time}</time>
@@ -214,7 +237,7 @@ function Agenda() {
                 <p className="text-[17px] leading-snug font-medium">{item.title}</p>
                 {item.topic ? <TopicChip id={item.topic} /> : null}
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </div>
@@ -259,8 +282,10 @@ function Sponsor() {
       <div className="grid gap-6 lg:grid-cols-2">
         <ul className="flex flex-col gap-3">
           {sponsorTiers.map((t, i) => (
-            <li
+            <Reveal
+              as="li"
               key={t.id}
+              delay={i * 100}
               className={`flex flex-col gap-4 rounded-2xl bg-paper p-6 ${i === 0 ? "ring-2 ring-indigo" : ""}`}
             >
               <div className="flex items-baseline justify-between gap-4">
@@ -275,7 +300,7 @@ function Sponsor() {
                   </li>
                 ))}
               </ul>
-            </li>
+            </Reveal>
           ))}
         </ul>
         <SponsorForm />
@@ -318,8 +343,8 @@ function Partners() {
           ["Topic partner", "5 slots open"],
           ["Community partner", "Open"],
           ["Media partner", "Open"],
-        ].map(([label, slots]) => (
-          <li key={label}>
+        ].map(([label, slots], i) => (
+          <Reveal as="li" key={label} delay={(i + 1) * 90}>
             <a
               href="#sponsor"
               className="flex h-full min-h-48 flex-col justify-between gap-6 rounded-2xl border border-dashed border-ink/20 p-6 transition-colors hover:border-indigo"
@@ -330,7 +355,7 @@ function Partners() {
                 <p className="text-sm text-indigo">{slots} →</p>
               </div>
             </a>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>
@@ -361,11 +386,11 @@ function Recap() {
         ))}
       </div>
       <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-        {stats2025.map((s) => (
-          <div key={s.label} className="flex flex-col gap-1">
+        {stats2025.map((s, i) => (
+          <Reveal key={s.label} delay={i * 90} className="flex flex-col gap-1">
             <dd className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">{s.value}</dd>
             <dt className="text-sm text-muted">{s.label}</dt>
-          </div>
+          </Reveal>
         ))}
       </dl>
     </Section>
@@ -473,8 +498,15 @@ function Footer() {
           <ButtonLink href="#register">Register</ButtonLink>
         </div>
         <div className="flex h-3" aria-hidden>
-          {topics.map((t) => (
-            <span key={t.id} className="flex-1" style={{ background: t.color }} />
+          {topics.map((t, i) => (
+            <Reveal
+              as="span"
+              variant="drop"
+              key={t.id}
+              delay={i * 110}
+              className="block flex-1"
+              style={{ background: t.color }}
+            />
           ))}
         </div>
         <div className="flex flex-col gap-6 text-sm text-muted md:flex-row md:items-center md:justify-between">

@@ -27,7 +27,7 @@ export function Footer() {
           ))}
         </div>
         <div className="flex flex-col gap-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
-          <Wordmark />
+          <Wordmark className="h-11" />
           <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
             {[
               ...nav,

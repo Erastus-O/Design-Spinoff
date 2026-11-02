@@ -1,12 +1,16 @@
 import type { ReactNode } from "react";
 import { topics, type TopicId } from "./content";
 
-export function Wordmark() {
+export function Wordmark({ className = "h-9" }: { className?: string }) {
   return (
-    <span className="flex items-baseline gap-2 whitespace-nowrap">
-      <span className="text-[1.1rem] font-bold tracking-tight">Design Spin-off</span>
-      <span className="hidden text-xs text-muted sm:inline">by Sections</span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/images/design-spin-off-logo.png"
+      alt="Design Spin-off by Sections"
+      width={301}
+      height={84}
+      className={`w-auto ${className}`}
+    />
   );
 }
 

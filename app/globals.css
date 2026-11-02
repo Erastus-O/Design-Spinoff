@@ -1,18 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fafafa;
-  --foreground: #171717;
+/* Layout: a dark cocoa frame like the reference, with one rounded photo hero
+   card, then quiet ruled sections; lilac is the single accent. */
+@theme {
+  --color-cocoa: #1b110b;
+  --color-cocoa-2: #261811;
+  --color-cocoa-3: #33231a;
+  --color-cream: #f4ebdf;
+  --color-sand: #b8a493;
+  --color-line: rgb(244 235 223 / 0.14);
+  --color-lilac: #c3a6ff;
+
+  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  overflow-x: clip;
+  background: var(--color-cocoa);
+  color: var(--color-cream);
 }
+
+::selection {
+  background: var(--color-lilac);
+  color: var(--color-cocoa);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-lilac);
+  outline-offset: 3px;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker {
+  animation: ticker 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker { animation: none; }
+}
+
+details > summary::-webkit-details-marker { display: none; }

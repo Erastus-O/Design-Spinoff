@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
-import { sponsorTiers, tickets, type TicketId } from "./content";
+import { homeAnchor, sponsorTiers, tickets, type TicketId } from "./content";
 import { buttonClass } from "./primitives";
 import { Reveal } from "./reveal";
 
@@ -311,7 +311,7 @@ export function TicketsAndRegister() {
           </ul>
           <p className="border-t border-line pt-4 text-[13px] leading-relaxed text-muted">
             Teams of five or more get 15% off General tickets.{" "}
-            <a href="#contact" className="text-ink underline underline-offset-4">
+            <a href={homeAnchor("contact")} className="text-ink underline underline-offset-4">
               Ask for an invoice
             </a>
             .

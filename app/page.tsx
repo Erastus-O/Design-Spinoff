@@ -4,18 +4,20 @@ import {
   event,
   faqs,
   hero,
-  nav,
   speakerOrgs2025,
   speakerSlots,
   sponsorTiers,
   sponsorValue,
   stats2025,
+  routes,
+  tickets,
   topics,
 } from "@/components/site/content";
-import { ContactForm, SponsorForm, TicketsAndRegister } from "@/components/site/forms";
+import { ContactForm, SponsorForm } from "@/components/site/forms";
+import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { Reveal } from "@/components/site/reveal";
-import { ButtonLink, Draft, Section, SectionHead, TopicChip, Wordmark, topicById } from "@/components/site/primitives";
+import { ButtonLink, Draft, Section, SectionHead, TopicChip, topicById } from "@/components/site/primitives";
 
 export default function Home() {
   return (
@@ -26,7 +28,7 @@ export default function Home() {
         <Topics />
         <Speakers />
         <Agenda />
-        <Tickets />
+        <TicketsTeaser />
         <Sponsor />
         <Partners />
         <Recap />
@@ -90,7 +92,7 @@ function Hero() {
           </h1>
           <p className="max-w-md text-[15px] leading-relaxed text-muted">{hero.body}</p>
           <div className="mt-4 flex flex-wrap gap-3">
-            <ButtonLink href="#register">Register</ButtonLink>
+            <ButtonLink href={routes.tickets}>Register</ButtonLink>
             <ButtonLink href="#sponsor" variant="outline">
               Become a sponsor
             </ButtonLink>
@@ -177,7 +179,7 @@ function Speakers() {
         title="UK voices across all five topics"
         body="A curated lineup of UK designers, engineers and design leaders, one or more for every topic. We’re revealing names in stages."
         aside={
-          <ButtonLink href="#register" variant="outline">
+          <ButtonLink href={`${routes.tickets}#register`} variant="outline">
             Get speaker updates
           </ButtonLink>
         }
@@ -245,18 +247,28 @@ function Agenda() {
   );
 }
 
-/* ---------- Tickets + register ---------- */
+/* ---------- Tickets teaser (full tickets live on /tickets) ---------- */
 
-function Tickets() {
+function TicketsTeaser() {
   return (
     <Section id="tickets">
-      <SectionHead
-        eyebrow="Tickets"
-        title="Pick your seat"
-        body="Prices include VAT and lunch. Early-bird General tickets are limited."
-        aside={<Draft>Draft pricing</Draft>}
-      />
-      <TicketsAndRegister />
+      <div className="flex flex-col gap-8 rounded-3xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
+        <div className="flex max-w-xl flex-col gap-4">
+          <p className="text-[15px] text-white/70">Tickets</p>
+          <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">
+            Seats from {tickets[0].price}
+          </h2>
+          <p className="leading-relaxed text-white/80">
+            {tickets.map((t) => `${t.name} ${t.price}`).join(" · ")}. Early-bird General tickets are limited.
+          </p>
+        </div>
+        <a
+          href={routes.tickets}
+          className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-sm font-medium whitespace-nowrap text-indigo transition-colors hover:bg-white/90"
+        >
+          See tickets and register
+        </a>
+      </div>
     </Section>
   );
 }
@@ -482,45 +494,5 @@ function Contact() {
         <ContactForm />
       </div>
     </Section>
-  );
-}
-
-/* ---------- Footer ---------- */
-
-function Footer() {
-  return (
-    <footer>
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 pt-8 pb-14 sm:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <p className="max-w-xl text-4xl leading-[1.1] font-bold tracking-tight text-balance sm:text-5xl">
-            See you in London.
-          </p>
-          <ButtonLink href="#register">Register</ButtonLink>
-        </div>
-        <div className="flex h-3" aria-hidden>
-          {topics.map((t, i) => (
-            <Reveal
-              as="span"
-              variant="drop"
-              key={t.id}
-              delay={i * 110}
-              className="block flex-1"
-              style={{ background: t.color }}
-            />
-          ))}
-        </div>
-        <div className="flex flex-col gap-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
-          <Wordmark />
-          <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
-            {[...nav, { href: "#partners", label: "Partners" }, { href: "#contact", label: "Contact" }].map((item) => (
-              <a key={item.href} href={item.href} className="hover:text-ink">
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <p>© 2026 Sections</p>
-        </div>
-      </div>
-    </footer>
   );
 }

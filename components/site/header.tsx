@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { event, nav } from "./content";
+import { event, homeAnchor, nav, routes } from "./content";
 import { ButtonLink, Wordmark } from "./primitives";
 
 export function Header() {
@@ -22,7 +22,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:gap-8 sm:px-8">
-        <a href="#top" aria-label={`${event.name} ${event.edition}, back to top`}>
+        <a href={homeAnchor("top")} aria-label={`${event.name} ${event.edition}, back to top`}>
           <Wordmark />
         </a>
         <nav aria-label="Sections" className="hidden items-center gap-7 text-sm lg:flex">
@@ -33,10 +33,10 @@ export function Header() {
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-3 sm:gap-5">
-          <a href="#contact" className="hidden text-sm text-muted hover:text-ink sm:inline">
+          <a href={homeAnchor("contact")} className="hidden text-sm text-muted hover:text-ink sm:inline">
             Contact us
           </a>
-          <ButtonLink href="#register" size="sm">
+          <ButtonLink href={routes.tickets} size="sm">
             Register
           </ButtonLink>
           <button
@@ -61,7 +61,7 @@ export function Header() {
       {open ? (
         <nav id="mobile-nav" aria-label="Sections" className="px-5 pt-2 pb-6 sm:px-8 lg:hidden">
           <ul className="flex flex-col">
-            {[...nav, { href: "#contact", label: "Contact us" }].map((item) => (
+            {[...nav, { href: homeAnchor("contact"), label: "Contact us" }].map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}

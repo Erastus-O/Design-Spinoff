@@ -17,13 +17,24 @@ export const event = {
   contactEmail: "",
 };
 
+// Page links. The static preview build (NEXT_PUBLIC_STATIC_PREVIEW=1) is served
+// from a sub-folder as plain files, so it needs relative .html paths.
+const staticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1";
+export const routes = {
+  home: staticPreview ? "./index.html" : "/",
+  tickets: staticPreview ? "./tickets.html" : "/tickets",
+};
+
+/** A link to a section of the home page, usable from any page. */
+export const homeAnchor = (id: string) => `${routes.home}#${id}`;
+
 export const nav = [
-  { href: "#topics", label: "Topics" },
-  { href: "#speakers", label: "Speakers" },
-  { href: "#agenda", label: "Agenda" },
-  { href: "#tickets", label: "Tickets" },
-  { href: "#sponsor", label: "Sponsor" },
-  { href: "#faqs", label: "FAQs" },
+  { href: homeAnchor("topics"), label: "Topics" },
+  { href: homeAnchor("speakers"), label: "Speakers" },
+  { href: homeAnchor("agenda"), label: "Agenda" },
+  { href: routes.tickets, label: "Tickets" },
+  { href: homeAnchor("sponsor"), label: "Sponsor" },
+  { href: homeAnchor("faqs"), label: "FAQs" },
 ];
 
 export const hero = {

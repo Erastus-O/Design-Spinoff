@@ -157,9 +157,9 @@ function Topics() {
           delay={topics.length * 90}
           className="flex flex-col justify-between gap-6 rounded-2xl bg-indigo p-7 text-white"
         >
-          <h3 className="text-xl font-semibold tracking-tight">Have a talk in one of these?</h3>
-          <a href="#contact" className="w-fit text-sm font-medium underline underline-offset-4">
-            Pitch it to us →
+          <h3 className="text-xl font-semibold tracking-tight">See how the five topics fill the day</h3>
+          <a href="#agenda" className="w-fit text-sm font-medium underline underline-offset-4">
+            View the agenda →
           </a>
         </Reveal>
       </ul>
@@ -175,10 +175,10 @@ function Speakers() {
       <SectionHead
         eyebrow="Speakers"
         title="UK voices across all five topics"
-        body="We’re inviting designers, engineers and leaders based in the UK. Names are announced as they’re confirmed."
+        body="A curated lineup of UK designers, engineers and design leaders, one or more for every topic. We’re revealing names in stages."
         aside={
-          <ButtonLink href="#contact" variant="outline">
-            Apply to speak
+          <ButtonLink href="#register" variant="outline">
+            Get speaker updates
           </ButtonLink>
         }
       />
@@ -449,7 +449,7 @@ function Contact() {
           <SectionHead
             eyebrow="Contact us"
             title="Talk to the team"
-            body="Questions about tickets, speaking, sponsorship or press. We reply within two working days."
+            body="Questions about tickets, sponsorship, press or anything else. We reply within two working days."
           />
           <dl className="flex flex-col gap-5 text-[15px]">
             {event.contactEmail ? (

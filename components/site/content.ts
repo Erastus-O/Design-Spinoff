@@ -83,9 +83,18 @@ export const stats2025 = [
 ];
 
 // Teams the 2025 (Lagos) speakers came from.
-export const speakerOrgs2025 = ["Kimoyo Insights", "AI Nova", "Treepz", "Piggyvest", "Paystack", "Multigate", "Africhange"];
+export const speakerOrgs2025 = [
+  "Kimoyo Insights",
+  "AI Nova",
+  "Treepz",
+  "Piggyvest",
+  "Paystack",
+  "Multigate",
+  "Africhange",
+];
 
-// TBA: 2027 UK speakers. One open slot per topic until names are confirmed.
+// TBA: 2027 speakers come from a curated UK list; slots show the topic and
+// format until each name is announced.
 export const speakerSlots: { topic: TopicId; format: string }[] = [
   { topic: "accessibility", format: "Keynote" },
   { topic: "design", format: "Panel" },
@@ -139,10 +148,19 @@ export const tickets = [
 export type TicketId = (typeof tickets)[number]["id"];
 
 export const sponsorValue = [
-  { title: "Brand visibility", body: "Lead-partner placement across event materials, digital promotion and live streams." },
+  {
+    title: "Brand visibility",
+    body: "Lead-partner placement across event materials, digital promotion and live streams.",
+  },
   { title: "Thought leadership", body: "A keynote slot for your leadership on the main stage." },
-  { title: "Access to talent", body: "Direct time with senior designers, design engineers and product leaders across the UK." },
-  { title: "Content amplification", body: "Co-branded video, clips, insights and reports distributed after the event." },
+  {
+    title: "Access to talent",
+    body: "Direct time with senior designers, design engineers and product leaders across the UK.",
+  },
+  {
+    title: "Content amplification",
+    body: "Co-branded video, clips, insights and reports distributed after the event.",
+  },
 ];
 
 // DRAFT: partnership tiers. The headline package comes from the 2025 deck.
@@ -162,7 +180,12 @@ export const sponsorTiers = [
     id: "topic",
     name: "Topic partner",
     slots: "5 available",
-    perks: ["Own one of the five topics", "Panel seat in your topic", "Logo on stage and site", "Curated networking session"],
+    perks: [
+      "Own one of the five topics",
+      "Panel seat in your topic",
+      "Logo on stage and site",
+      "Curated networking session",
+    ],
   },
   {
     id: "community",
@@ -194,8 +217,8 @@ export const faqs = [
     a: "You can transfer your ticket to someone else at no cost up to 48 hours before the event. Refunds are available up to 14 days before the event.",
   },
   {
-    q: "How do I apply to speak?",
-    a: "We’re inviting speakers based in the UK. Send a short pitch through the contact form with the topic set to Speaking: which of the five topics, your angle, and what the audience will take away.",
+    q: "Who are the speakers?",
+    a: "Speakers are invited from a curated list of UK designers, design engineers and design leaders, covering all five topics. We announce names in stages; register and we’ll email you as each one is confirmed.",
   },
   {
     q: "Do you offer group or team tickets?",

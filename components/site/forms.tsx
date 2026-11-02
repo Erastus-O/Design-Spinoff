@@ -386,7 +386,6 @@ export function ContactForm() {
         options={[
           { value: "general", label: "General question" },
           { value: "tickets", label: "Tickets and group bookings" },
-          { value: "speaking", label: "Speaking" },
           { value: "sponsorship", label: "Sponsorship" },
           { value: "press", label: "Press and media" },
         ]}

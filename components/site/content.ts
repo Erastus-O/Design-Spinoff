@@ -23,7 +23,7 @@ const staticPreview = process.env.NEXT_PUBLIC_STATIC_PREVIEW === "1";
 export const routes = {
   home: staticPreview ? "./index.html" : "/",
   tickets: staticPreview ? "./tickets.html" : "/tickets",
-  recap: staticPreview ? "./where-it-started.html" : "/where-it-started",
+  journey: staticPreview ? "./journey.html" : "/journey",
 };
 
 /** A link to a section of the home page, usable from any page. */
@@ -36,7 +36,7 @@ export const nav = [
   { href: routes.tickets, label: "Tickets" },
   { href: homeAnchor("partners"), label: "Partners" },
   { href: homeAnchor("faqs"), label: "FAQs" },
-  { href: routes.recap, label: "Where it started" },
+  { href: routes.journey, label: "Journey" },
 ];
 
 export const hero = {
@@ -197,32 +197,8 @@ export const faqs = [
 ];
 
 // Design Spin-off 2025 (Lagos), from the 2025 partner deck. Used on the
-// Where it started page.
+// Journey page.
 export const recap2025 = {
-  question: "How do we design for an AI-powered Africa?",
-  intro:
-    "Design Spin-off began in Lagos as a conference about the practical reality of design and product work. In 2025 we brought designers, founders, fintech leaders and regulators into one room to ask how we design for an AI-powered Africa.",
-  venue: {
-    name: "The Polygon HQ",
-    address: "5 Idowu Taylor, Victoria Island, Lagos",
-    blurb:
-      "Tucked inside a four-decade-old office building on Victoria Island, Polygon HQ is intentionally raw, unpolished and full of possibility: a blank canvas that shifts from co-working hub to event venue to studio.",
-  },
-  tracks: [
-    {
-      title: "Designing for an AI-powered ecosystem",
-      body: "How AI is reshaping product design, UX and creative processes.",
-    },
-    {
-      title: "Finance, trade and consumer behaviour",
-      body: "The evolution of trade, progressive finance and remittance in Africa.",
-    },
-    {
-      title: "Compliance, regulation and trust",
-      body: "The regulatory and governance frameworks shaping Africa’s AI future.",
-    },
-    { title: "The creative and talent economy", body: "Where technology, talent and creativity meet storytelling." },
-  ],
   speakers: [
     { name: "Namnso Ukpanah", role: "Chief Design Officer", org: "Kimoyo Insights" },
     { name: "Damilare Fakorede", role: "Founder", org: "AI Nova" },
@@ -233,14 +209,45 @@ export const recap2025 = {
     { name: "Kehinde Titiloye", role: "Head, Financial Crimes Ops", org: "Multigate" },
     { name: "Emmanuel Faith", role: "HR Manager", org: "Africhange" },
   ],
-  photos: [
-    { src: "/images/2025-laughter.webp", alt: "Attendees laughing together between sessions" },
-    { src: "/images/2025-panel.webp", alt: "Two panelists in conversation on the Design Spin-off 2025 stage" },
-    { src: "/images/2025-crowd.webp", alt: "The audience listening during a session" },
-    { src: "/images/2025-host.webp", alt: "The host speaking on stage in front of the Design Spin-off backdrop" },
-    { src: "/images/2025-audience-qa.webp", alt: "An attendee asking a question during the Q&A" },
-    { src: "/images/2025-mic.webp", alt: "A speaker holding the microphone on stage" },
-    { src: "/images/2025-conversation.webp", alt: "Two attendees talking at the venue" },
-    { src: "/images/2025-embrace.webp", alt: "Two attendees embracing on stage" },
-  ],
 };
+
+// Journey carousel: one card per chapter of the 2025 edition. Each card
+// carries the headline number shown beside the carousel while it is active.
+export const journeyCards = [
+  {
+    title: "Designing for an AI-powered ecosystem",
+    body: "How AI is reshaping product design, UX and creative processes.",
+    photo: { src: "/images/2025-panel.webp", alt: "Two panelists in conversation on the Design Spin-off 2025 stage" },
+    stat: { value: "200+", label: "Attended in person" },
+  },
+  {
+    title: "Finance, trade and consumer behaviour",
+    body: "The evolution of trade, progressive finance and remittance in Africa.",
+    photo: { src: "/images/2025-audience-qa.webp", alt: "An attendee asking a question during the Q&A" },
+    stat: { value: "500+", label: "Registered interest" },
+  },
+  {
+    title: "Compliance, regulation and trust",
+    body: "The regulatory and governance frameworks shaping Africa’s AI future.",
+    photo: { src: "/images/2025-host.webp", alt: "The host speaking in front of the Design Spin-off backdrop" },
+    stat: { value: "5,000+", label: "Post-event views" },
+  },
+  {
+    title: "The creative and talent economy",
+    body: "Where technology, talent and creativity meet storytelling.",
+    photo: { src: "/images/2025-mic.webp", alt: "A speaker holding the microphone on stage" },
+    stat: { value: "50,000+", label: "Content impressions" },
+  },
+  {
+    title: "The people in the room",
+    body: "Designers, founders, fintech leaders and regulators, with eight speakers on stage.",
+    photo: { src: "/images/2025-laughter.webp", alt: "Attendees laughing together between sessions" },
+    stat: { value: "8", label: "Speakers on stage" },
+  },
+  {
+    title: "The Polygon HQ, Victoria Island",
+    body: "A raw, four-decade-old building that shifts from co-working hub to event venue to studio.",
+    photo: { src: "/images/2025-venue-polygon-hq.webp", alt: "Rows of chairs set out inside The Polygon HQ" },
+    stat: { value: "6", label: "Sponsors and partners" },
+  },
+];

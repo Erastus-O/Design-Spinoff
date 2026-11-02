@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
-import { homeAnchor, sponsorTiers, tickets, type TicketId } from "./content";
+import { homeAnchor, tickets, type TicketId } from "./content";
 import { buttonClass } from "./primitives";
 import { Reveal } from "./reveal";
 
@@ -319,47 +319,6 @@ export function TicketsAndRegister() {
         </aside>
       </div>
     </>
-  );
-}
-
-/* ---------- Sponsorship enquiry ---------- */
-
-export function SponsorForm() {
-  const { status, values, onSubmit, reset } = useSubmit("sponsorship");
-  if (status === "sent") {
-    return (
-      <Confirmation title="Thanks, we’ll be in touch." onReset={reset} resetLabel="Send another enquiry">
-        The Sections partnerships team will email <strong className="text-ink">{values.email}</strong> with the 2027
-        partner deck within two working days.
-      </Confirmation>
-    );
-  }
-  return (
-    <form onSubmit={onSubmit} className="grid gap-4 rounded-2xl border border-line bg-mist p-6 sm:grid-cols-2 sm:p-8">
-      <div className="flex flex-col gap-2 sm:col-span-2">
-        <h3 className="font-bold tracking-tight text-2xl">Request the partner deck</h3>
-        <p className="text-muted">Tell us a little about your company and we’ll send pricing and availability.</p>
-      </div>
-      <Field label="Full name" name="name" autoComplete="name" />
-      <Field label="Work email" name="email" type="email" autoComplete="email" />
-      <Field label="Company" name="company" autoComplete="organization" />
-      <Select
-        label="Interested in"
-        name="tier"
-        options={[
-          ...sponsorTiers.map((t) => ({ value: t.id, label: t.name })),
-          { value: "unsure", label: "Not sure yet" },
-        ]}
-      />
-      <TextArea
-        label="What would you like to get out of it?"
-        name="goals"
-        placeholder="Hiring, launches, brand, community…"
-      />
-      <div className="sm:col-span-2">
-        <SubmitButton status={status}>Send enquiry</SubmitButton>
-      </div>
-    </form>
   );
 }
 

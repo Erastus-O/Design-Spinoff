@@ -33,7 +33,7 @@ export const nav = [
   { href: homeAnchor("speakers"), label: "Speakers" },
   { href: homeAnchor("agenda"), label: "Agenda" },
   { href: routes.tickets, label: "Tickets" },
-  { href: homeAnchor("sponsor"), label: "Sponsor" },
+  { href: homeAnchor("partners"), label: "Partners" },
   { href: homeAnchor("faqs"), label: "FAQs" },
 ];
 
@@ -158,53 +158,10 @@ export const tickets = [
 
 export type TicketId = (typeof tickets)[number]["id"];
 
-export const sponsorValue = [
-  {
-    title: "Brand visibility",
-    body: "Lead-partner placement across event materials, digital promotion and live streams.",
-  },
-  { title: "Thought leadership", body: "A keynote slot for your leadership on the main stage." },
-  {
-    title: "Access to talent",
-    body: "Direct time with senior designers, design engineers and product leaders across the UK.",
-  },
-  {
-    title: "Content amplification",
-    body: "Co-branded video, clips, insights and reports distributed after the event.",
-  },
-];
-
-// DRAFT: partnership tiers. The headline package comes from the 2025 deck.
-export const sponsorTiers = [
-  {
-    id: "headline",
-    name: "Headline partner",
-    slots: "1 available",
-    perks: [
-      "Naming rights: “Design Spin-off 2027 in partnership with you”",
-      "Keynote slot for an executive",
-      "Top logo placement on site, social, banners and streams",
-      "Co-branded post-event clips and report",
-    ],
-  },
-  {
-    id: "topic",
-    name: "Topic partner",
-    slots: "5 available",
-    perks: [
-      "Own one of the five topics",
-      "Panel seat in your topic",
-      "Logo on stage and site",
-      "Curated networking session",
-    ],
-  },
-  {
-    id: "community",
-    name: "Community partner",
-    slots: "Open",
-    perks: ["Logo on site and social", "Ticket allocation for your community", "Shout-out on stage"],
-  },
-];
+// Partners and sponsors shown in the strip under the hero. Add a `logo` path
+// (e.g. "/images/partners/acme.svg") to show a logo instead of the name.
+// TBA: 2027 partners and sponsors. Empty slots read "Your logo" until filled.
+export const partners: { name: string; logo?: string }[] = [{ name: "Sections" }];
 
 export const faqs = [
   {

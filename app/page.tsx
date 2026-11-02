@@ -6,14 +6,13 @@ import {
   hero,
   speakerOrgs2025,
   speakerSlots,
-  sponsorTiers,
-  sponsorValue,
+  partners,
   stats2025,
   routes,
   tickets,
   topics,
 } from "@/components/site/content";
-import { ContactForm, SponsorForm } from "@/components/site/forms";
+import { ContactForm } from "@/components/site/forms";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { Reveal } from "@/components/site/reveal";
@@ -25,12 +24,11 @@ export default function Home() {
       <Header />
       <main id="top">
         <Hero />
+        <Partners />
         <Topics />
         <Speakers />
         <Agenda />
         <TicketsTeaser />
-        <Sponsor />
-        <Partners />
         <Recap />
         <Faqs />
         <Contact />
@@ -93,7 +91,7 @@ function Hero() {
           <p className="max-w-md text-[15px] leading-relaxed text-muted">{hero.body}</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <ButtonLink href={routes.tickets}>Register</ButtonLink>
-            <ButtonLink href="#sponsor" variant="outline">
+            <ButtonLink href="#contact" variant="outline">
               Become a sponsor
             </ButtonLink>
           </div>
@@ -118,6 +116,51 @@ function Hero() {
           </div>
           <TopicStack />
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Partners and sponsors ---------- */
+
+// Placeholder slots fill the row until enough partners are confirmed.
+const PARTNER_ROW = 6;
+
+function Partners() {
+  const slots = Math.max(PARTNER_ROW - partners.length, 0);
+  return (
+    <section id="partners" aria-labelledby="partners-title" className="scroll-mt-20">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 border-y border-line px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:gap-16">
+        <div className="flex shrink-0 flex-col gap-1 lg:w-56">
+          <h2 id="partners-title" className="text-[13px] leading-snug text-muted">
+            Hosted by Sections, with our 2027 partners and sponsors
+          </h2>
+          <a href="#contact" className="w-fit text-[13px] font-medium text-indigo hover:underline">
+            Become a sponsor →
+          </a>
+        </div>
+        <ul className="grid flex-1 grid-cols-3 items-center gap-x-6 gap-y-5 lg:flex lg:justify-between">
+          {partners.map((p, i) => (
+            <Reveal as="li" key={p.name} delay={i * 70} className="flex h-8 items-center">
+              {p.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={p.logo} alt={p.name} className="h-7 w-auto max-w-[8rem] object-contain grayscale" />
+              ) : (
+                <span className="text-lg font-bold tracking-tight whitespace-nowrap">{p.name}</span>
+              )}
+            </Reveal>
+          ))}
+          {Array.from({ length: slots }, (_, i) => (
+            <Reveal
+              as="li"
+              key={`slot-${i}`}
+              delay={(partners.length + i) * 70}
+              className="flex h-8 items-center text-lg font-semibold tracking-tight whitespace-nowrap text-ink/20"
+            >
+              <span>Your logo</span>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -269,107 +312,6 @@ function TicketsTeaser() {
           See tickets and register
         </a>
       </div>
-    </Section>
-  );
-}
-
-/* ---------- Sponsor ---------- */
-
-function Sponsor() {
-  return (
-    <Section id="sponsor" className="bg-mist">
-      <SectionHead
-        eyebrow="Become a sponsor"
-        title="Put your brand in front of the UK’s design community"
-        body="Partner with Sections on Design Spin-off 2027 and reach senior designers, design engineers and product leaders in one room."
-      />
-      <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {sponsorValue.map((v) => (
-          <li key={v.title} className="flex flex-col gap-2">
-            <h3 className="font-semibold">{v.title}</h3>
-            <p className="text-sm leading-relaxed text-muted">{v.body}</p>
-          </li>
-        ))}
-      </ul>
-      <div className="grid gap-6 lg:grid-cols-2">
-        <ul className="flex flex-col gap-3">
-          {sponsorTiers.map((t, i) => (
-            <Reveal
-              as="li"
-              key={t.id}
-              delay={i * 100}
-              className={`flex flex-col gap-4 rounded-2xl bg-paper p-6 ${i === 0 ? "ring-2 ring-indigo" : ""}`}
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="text-xl font-semibold tracking-tight">{t.name}</h3>
-                <span className="text-xs text-muted">{t.slots}</span>
-              </div>
-              <ul className="grid gap-2 text-sm text-muted sm:grid-cols-2">
-                {t.perks.map((perk) => (
-                  <li key={perk} className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 bg-indigo" aria-hidden />
-                    {perk}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))}
-        </ul>
-        <SponsorForm />
-      </div>
-    </Section>
-  );
-}
-
-/* ---------- Partners ---------- */
-
-function Partners() {
-  return (
-    <Section id="partners">
-      <SectionHead
-        eyebrow="Partners"
-        title="Hosted by Sections, built with partners"
-        body="Partner announcements for 2027 start soon."
-      />
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <li className="flex min-h-48 flex-col justify-between gap-6 rounded-2xl bg-indigo p-6 text-white sm:col-span-2 lg:row-span-2">
-          <p className="text-xs text-white/70">Host</p>
-          <div className="flex flex-col gap-3">
-            <p className="text-4xl font-bold tracking-tight">Sections</p>
-            <p className="max-w-sm text-sm leading-relaxed text-white/80">
-              The design studio and community behind Design Spin-off, bringing designers closer to the practical reality
-              of product work.
-            </p>
-            <a
-              href={event.organiserUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="w-fit text-sm font-medium underline underline-offset-4"
-            >
-              Visit Sections ↗
-            </a>
-          </div>
-        </li>
-        {[
-          ["Headline partner", "1 slot open"],
-          ["Topic partner", "5 slots open"],
-          ["Community partner", "Open"],
-          ["Media partner", "Open"],
-        ].map(([label, slots], i) => (
-          <Reveal as="li" key={label} delay={(i + 1) * 90}>
-            <a
-              href="#sponsor"
-              className="flex h-full min-h-48 flex-col justify-between gap-6 rounded-2xl border border-dashed border-ink/20 p-6 transition-colors hover:border-indigo"
-            >
-              <p className="text-xs text-muted">{label}</p>
-              <div className="flex flex-col gap-1">
-                <p className="text-lg font-semibold">Your brand here</p>
-                <p className="text-sm text-indigo">{slots} →</p>
-              </div>
-            </a>
-          </Reveal>
-        ))}
-      </ul>
     </Section>
   );
 }

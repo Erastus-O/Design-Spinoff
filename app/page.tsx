@@ -123,11 +123,17 @@ function Hero() {
 
 /* ---------- Partners and sponsors ---------- */
 
-// Placeholder slots fill the row until enough partners are confirmed.
+// Placeholder slots pad the marquee until enough partners are confirmed.
 const PARTNER_ROW = 6;
 
 function Partners() {
   const slots = Math.max(PARTNER_ROW - partners.length, 0);
+  const items = [
+    ...partners.map((p) => ({ ...p, placeholder: false })),
+    ...Array.from({ length: slots }, () => ({ name: "", logo: undefined, placeholder: true })),
+  ];
+  // Repeat short lists so one copy is always wider than the strip.
+  const loop = Array.from({ length: Math.ceil(12 / items.length) }, () => items).flat();
   return (
     <section id="partners" aria-labelledby="partners-title" className="scroll-mt-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 border-y border-line px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:gap-16">
@@ -139,28 +145,38 @@ function Partners() {
             Become a sponsor →
           </a>
         </div>
-        <ul className="grid flex-1 grid-cols-3 items-center gap-x-6 gap-y-5 lg:flex lg:justify-between">
-          {partners.map((p, i) => (
-            <Reveal as="li" key={p.name} delay={i * 70} className="flex h-8 items-center">
-              {p.logo ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={p.logo} alt={p.name} className="h-7 w-auto max-w-[8rem] object-contain grayscale" />
-              ) : (
-                <span className="text-lg font-bold tracking-tight whitespace-nowrap">{p.name}</span>
-              )}
-            </Reveal>
-          ))}
-          {Array.from({ length: slots }, (_, i) => (
-            <Reveal
-              as="li"
-              key={`slot-${i}`}
-              delay={(partners.length + i) * 70}
-              className="flex h-8 items-center text-lg font-semibold tracking-tight whitespace-nowrap text-ink/20"
-            >
-              <span>Your logo</span>
-            </Reveal>
-          ))}
-        </ul>
+        {/* Auto-scrolling marquee: the list is rendered twice and the track slides by
+            half its width, so the loop is seamless. Hover or focus pauses it. */}
+        <div className="marquee relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+          <div className="marquee-track flex w-max">
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-hidden={copy === 1 || undefined}
+                className={`flex shrink-0 items-center ${copy === 1 ? "marquee-copy" : ""}`}
+              >
+                {loop.map((item, i) => (
+                  <li key={i} className="flex h-8 shrink-0 items-center pr-14">
+                    {item.logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.logo}
+                        alt={copy === 1 ? "" : item.name}
+                        className="h-7 w-auto max-w-[8rem] object-contain grayscale"
+                      />
+                    ) : item.placeholder ? (
+                      <span className="text-lg font-semibold tracking-tight whitespace-nowrap text-ink/20">
+                        Your logo
+                      </span>
+                    ) : (
+                      <span className="text-lg font-bold tracking-tight whitespace-nowrap">{item.name}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

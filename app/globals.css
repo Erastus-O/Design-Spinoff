@@ -53,6 +53,16 @@ body {
   animation: drop-in 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
 }
 
+/* Partner logo marquee. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track { animation: marquee 30s linear infinite; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+
 /* Scroll-triggered entrances (see components/site/reveal.tsx). */
 @keyframes rise-in {
   from { transform: translateY(28px); opacity: 0; }
@@ -67,6 +77,10 @@ body {
   html { scroll-behavior: auto; }
   .drop-in, .reveal-drop, .reveal-rise { animation: none; }
   .reveal-armed { opacity: 1; }
+  /* No auto-scroll: show one copy and let people scroll it by hand. */
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+  .marquee-copy { display: none; }
 }
 
 details > summary::-webkit-details-marker { display: none; }

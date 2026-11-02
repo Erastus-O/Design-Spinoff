@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Burst, type BurstVariant } from "./burst";
 import { topics, type TopicId } from "./content";
 
 export function Wordmark({ className = "h-9" }: { className?: string }) {
@@ -72,20 +71,9 @@ export function SectionHead({
   );
 }
 
-export function Section({
-  id,
-  children,
-  className = "",
-  burst,
-}: {
-  id: string;
-  children: ReactNode;
-  className?: string;
-  burst?: BurstVariant;
-}) {
+export function Section({ id, children, className = "" }: { id: string; children: ReactNode; className?: string }) {
   return (
-    <section id={id} className={burst ? `relative isolate overflow-hidden ${className}` : className}>
-      {burst ? <Burst variant={burst} /> : null}
+    <section id={id} className={className}>
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 sm:px-8 sm:py-28">{children}</div>
     </section>
   );

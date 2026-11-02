@@ -11,6 +11,10 @@
   --color-indigo: #380c8f;
   --color-indigo-dark: #2a0870;
 
+  /* Burst background (components/site/burst.tsx). */
+  --color-burst-grey: #f1f1f3;
+  --color-burst-lilac: #e7e0fa;
+
   /* Topic colours, from the reference composition. */
   --color-navy: #0f4c8a;
   --color-orange: #ff8c2b;

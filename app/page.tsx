@@ -13,6 +13,7 @@ import {
   topics,
 } from "@/components/site/content";
 import { ContactForm } from "@/components/site/forms";
+import { Burst } from "@/components/site/burst";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { Reveal } from "@/components/site/reveal";
@@ -108,7 +109,8 @@ function Hero() {
           </dl>
         </div>
 
-        <div className="relative flex aspect-[588/717] max-w-full flex-col justify-between overflow-hidden rounded-3xl bg-mist">
+        <div className="relative isolate flex aspect-[588/717] max-w-full flex-col justify-between overflow-hidden rounded-3xl">
+          <Burst variant="a" />
           <div className="flex flex-col gap-1 p-6 sm:p-8">
             <p className="text-xs text-muted">Expected venue</p>
             <p className="text-lg font-semibold">{event.venue}</p>
@@ -186,7 +188,7 @@ function Partners() {
 
 function Topics() {
   return (
-    <Section id="topics" className="bg-mist">
+    <Section id="topics" burst="b">
       <SectionHead
         eyebrow="Key design topics"
         title="Five forces reshaping design work"
@@ -275,7 +277,7 @@ function Speakers() {
 
 function Agenda() {
   return (
-    <Section id="agenda" className="bg-mist">
+    <Section id="agenda" burst="c">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div className="flex flex-col gap-6 self-start lg:sticky lg:top-24">
           <SectionHead
@@ -336,7 +338,7 @@ function TicketsTeaser() {
 
 function Recap() {
   return (
-    <Section id="recap" className="bg-mist">
+    <Section id="recap" burst="d">
       <SectionHead
         eyebrow="Where it started"
         title="Design Spin-off 2025, Lagos"

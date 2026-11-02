@@ -17,27 +17,27 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-colors ${
-        scrolled || open ? "bg-cocoa/90 backdrop-blur-md" : "bg-cocoa"
+      className={`sticky top-0 z-40 bg-paper/90 backdrop-blur-md transition-shadow ${
+        scrolled || open ? "shadow-[0_1px_0_var(--color-line)]" : ""
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:gap-8 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:gap-8 sm:px-8">
         <a href="#top" aria-label={`${event.name} ${event.edition}, back to top`}>
           <Wordmark />
         </a>
         <nav aria-label="Sections" className="hidden items-center gap-7 text-sm lg:flex">
           {nav.map((item) => (
-            <a key={item.href} href={item.href} className="text-cream/85 hover:text-cream">
+            <a key={item.href} href={item.href} className="text-muted hover:text-ink">
               {item.label}
             </a>
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-3 sm:gap-5">
-          <a href="#contact" className="hidden text-sm text-cream/85 hover:text-cream sm:inline">
+          <a href="#contact" className="hidden text-sm text-muted hover:text-ink sm:inline">
             Contact us
           </a>
-          <ButtonLink href="#tickets" size="sm">
-            Get tickets
+          <ButtonLink href="#register" size="sm">
+            Register
           </ButtonLink>
           <button
             type="button"
@@ -49,28 +49,24 @@ export function Header() {
           >
             <span className="relative block h-3 w-5" aria-hidden>
               <span
-                className={`absolute left-0 h-px w-5 bg-cream transition-transform ${
-                  open ? "top-1.5 rotate-45" : "top-0"
-                }`}
+                className={`absolute left-0 h-0.5 w-5 bg-ink transition-transform ${open ? "top-1.5 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 h-px w-5 bg-cream transition-transform ${
-                  open ? "top-1.5 -rotate-45" : "top-3"
-                }`}
+                className={`absolute left-0 h-0.5 w-5 bg-ink transition-transform ${open ? "top-1.5 -rotate-45" : "top-3"}`}
               />
             </span>
           </button>
         </div>
       </div>
       {open ? (
-        <nav id="mobile-nav" aria-label="Sections" className="border-t border-line px-4 pb-6 pt-2 sm:px-8 lg:hidden">
+        <nav id="mobile-nav" aria-label="Sections" className="px-5 pt-2 pb-6 sm:px-8 lg:hidden">
           <ul className="flex flex-col">
             {[...nav, { href: "#contact", label: "Contact us" }].map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-line py-3 font-serif text-2xl"
+                  className="block border-b border-line py-3 text-xl font-semibold"
                 >
                   {item.label}
                 </a>

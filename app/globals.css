@@ -1,55 +1,61 @@
 @import "tailwindcss";
 
-/* Layout: a dark cocoa frame like the reference, with one rounded photo hero
-   card, then quiet ruled sections; lilac is the single accent. */
+/* Layout: white page, generous whitespace, black Sora headlines and grey body
+   copy; colour only appears in the five topic blocks and the indigo button. */
 @theme {
-  --color-cocoa: #1b110b;
-  --color-cocoa-2: #261811;
-  --color-cocoa-3: #33231a;
-  --color-cream: #f4ebdf;
-  --color-sand: #b8a493;
-  --color-line: rgb(244 235 223 / 0.14);
-  --color-lilac: #c3a6ff;
+  --color-paper: #ffffff;
+  --color-mist: #f8f8f8;
+  --color-line: #ebebeb;
+  --color-ink: #0b0b0b;
+  --color-muted: #6e6e6e;
+  --color-indigo: #380c8f;
+  --color-indigo-dark: #2a0870;
 
-  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
-  --font-sans: var(--font-figtree), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* Topic colours, from the reference composition. */
+  --color-navy: #0f4c8a;
+  --color-orange: #ff8c2b;
+  --color-cyan: #00a0db;
+  --color-crimson: #c8102e;
+  --color-salmon: #ffa896;
+
+  --font-sans: var(--font-sora), system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   overflow-x: clip;
-  background: var(--color-cocoa);
-  color: var(--color-cream);
+  background: var(--color-paper);
+  color: var(--color-ink);
 }
 
 ::selection {
-  background: var(--color-lilac);
-  color: var(--color-cocoa);
+  background: var(--color-indigo);
+  color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-lilac);
+  outline: 2px solid var(--color-indigo);
   outline-offset: 3px;
 }
 
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* Topic blocks drop into the hero card one after another. */
+@keyframes drop-in {
+  from { transform: translateY(-140%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-.ticker {
-  animation: ticker 28s linear infinite;
+.drop-in {
+  animation: drop-in 0.7s cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ticker { animation: none; }
+  .drop-in { animation: none; }
 }
 
 details > summary::-webkit-details-marker { display: none; }

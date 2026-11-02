@@ -1,18 +1,17 @@
 // All copy for the Design Spin-off 2027 one-pager lives here, so details can
 // be confirmed in one place. Anything marked DRAFT or TBA is a placeholder;
-// anything labelled 2025 comes from the 2025 partner deck.
+// anything labelled 2025 comes from the 2025 partner deck (Lagos edition).
 
 export const event = {
   name: "Design Spin-off",
   edition: "2027",
   organiser: "Sections",
   organiserUrl: "https://hellosections.framer.website",
-  // DRAFT: confirm the 2027 theme.
-  theme: "Africa, by Design",
-  // TBA: confirm date and venue.
+  theme: "The Designer’s Dilemma",
+  // TBA: confirm date. Venue is the expected host, not yet confirmed.
   date: "2027 · Date TBA",
-  city: "Lagos, Nigeria",
-  venue: "Venue announced soon",
+  city: "London, UK",
+  venue: "Design District, Greenwich Peninsula",
   format: "One day, in person",
   // TBA: add a public inbox. The contact section hides the address while empty.
   contactEmail: "",
@@ -28,56 +27,53 @@ export const nav = [
 ];
 
 export const hero = {
-  pill: "2025 recap",
-  ticker: "200+ designers, founders and policy leaders filled Polygon HQ for Design Spin-off 2025",
-  title: "Design for the Africa we’re building next",
-  body: "Design Spin-off is Sections’ annual conference on the practical reality of design and product work. In 2027 we go further: the products, people and policies the continent runs on next.",
+  eyebrow: "The Designer’s Dilemma",
+  title: "Exploring the design landscape in today’s industry",
+  body: "Design Spin-off is Sections’ annual conference on the practical reality of design and product work. In 2027 we bring it to London’s Design District, with speakers from across the UK.",
 };
 
-// The org names the 2025 speakers came from (see speakers2025).
-export const speakerOrgs2025 = [
-  "Kimoyo Insights",
-  "AI Nova",
-  "Treepz",
-  "Piggyvest",
-  "Paystack",
-  "Multigate",
-  "Africhange",
-];
-
-// DRAFT: 2027 tracks, extended from the 2025 discussion tracks.
+// The five topics, in the order they stack in the hero card. `bar` sets each
+// block's width and offset inside the card, as percentages, to match the
+// reference composition.
 export const topics = [
   {
-    tag: "AI",
-    title: "Designing AI-native products",
-    body: "How AI is reshaping product design, UX and the creative process, and what good looks like when the interface writes back.",
+    id: "accessibility",
+    name: "Accessibility",
+    color: "var(--color-navy)",
+    bar: { left: 7, width: 84, align: "center" },
+    body: "Designing for every body and every context: inclusive research, WCAG in practice, and making accessibility part of the process instead of a final audit.",
   },
   {
-    tag: "Fintech",
-    title: "Money, trade and the everyday user",
-    body: "Progressive finance, remittance and cross-border trade, designed for the people who actually move the money.",
+    id: "design",
+    name: "Design",
+    color: "var(--color-orange)",
+    bar: { left: 0, width: 35, align: "start" },
+    body: "Craft, critique and taste. How senior designers frame problems, build systems and make the case for good work inside real constraints.",
   },
   {
-    tag: "Policy",
-    title: "Trust, compliance and regulation",
-    body: "The governance frameworks shaping Africa’s AI future, and how designers turn rules into products people trust.",
+    id: "design-engineering",
+    name: "Design Engineering",
+    color: "var(--color-cyan)",
+    bar: { left: 35, width: 65, align: "end" },
+    body: "The space between Figma and production: prototyping in code, design tokens, motion and the people who work across both sides.",
   },
   {
-    tag: "Culture",
-    title: "The creative and talent economy",
-    body: "Where technology, talent and storytelling meet, and how African creative work travels the world.",
+    id: "ai",
+    name: "Artificial Intelligence",
+    color: "var(--color-crimson)",
+    bar: { left: 0, width: 75, align: "center" },
+    body: "What changes when the interface writes back. Designing AI products people trust, and using AI in the design process without losing judgement.",
   },
   {
-    tag: "Craft",
-    title: "Design leadership and craft",
-    body: "Building teams, systems and taste: what senior designers do differently, from critique to roadmap.",
+    id: "vibecoding",
+    name: "Vibecoding",
+    color: "var(--color-salmon)",
+    bar: { left: 5, width: 84, align: "center" },
+    body: "Shipping by describing. Where prompt-built software helps designers move faster, where it breaks, and what it means for the role.",
   },
-  {
-    tag: "Access",
-    title: "Designing for low bandwidth, high stakes",
-    body: "Research, accessibility and performance for users on patchy networks, shared phones and second languages.",
-  },
-];
+] as const;
+
+export type TopicId = (typeof topics)[number]["id"];
 
 export const stats2025 = [
   { value: "200+", label: "Attended in person" },
@@ -86,28 +82,32 @@ export const stats2025 = [
   { value: "50,000+", label: "Content impressions" },
 ];
 
-export const speakers2025 = [
-  { name: "Namnso Ukpanah", role: "Chief Design Officer", org: "Kimoyo Insights" },
-  { name: "Damilare Fakorede", role: "Founder", org: "AI Nova" },
-  { name: "Isreal Sobaloju", role: "Design Lead", org: "Treepz" },
-  { name: "Azeez Adeniran", role: "Engineering Manager", org: "Piggyvest" },
-  { name: "Frank Ikemefuna", role: "Global Influence", org: "Creative Economy" },
-  { name: "Samuel Adehoun", role: "Product Manager", org: "Paystack" },
-  { name: "Kehinde Titiloye", role: "Head, Financial Crimes Ops", org: "Multigate" },
-  { name: "Emmanuel Faith", role: "HR Manager", org: "Africhange" },
+// Teams the 2025 (Lagos) speakers came from.
+export const speakerOrgs2025 = ["Kimoyo Insights", "AI Nova", "Treepz", "Piggyvest", "Paystack", "Multigate", "Africhange"];
+
+// TBA: 2027 UK speakers. One open slot per topic until names are confirmed.
+export const speakerSlots: { topic: TopicId; format: string }[] = [
+  { topic: "accessibility", format: "Keynote" },
+  { topic: "design", format: "Panel" },
+  { topic: "design-engineering", format: "Workshop" },
+  { topic: "ai", format: "Panel" },
+  { topic: "vibecoding", format: "Live build" },
+  { topic: "design", format: "Fireside" },
+  { topic: "ai", format: "Talk" },
+  { topic: "accessibility", format: "Workshop" },
 ];
 
 // DRAFT: programme shape for the day; sessions confirmed with speakers.
-export const agenda = [
-  { time: "09:00", kind: "Arrivals", title: "Doors open, registration and coffee" },
-  { time: "10:00", kind: "Keynote", title: "Opening keynote: Africa, by Design" },
-  { time: "10:45", kind: "Panel", title: "Designing AI-native products for African users" },
-  { time: "11:45", kind: "Fireside", title: "Money, trade and the everyday user" },
-  { time: "12:45", kind: "Break", title: "Lunch and portfolio walk" },
-  { time: "14:00", kind: "Workshops", title: "Design systems for fintech · Research on low bandwidth" },
-  { time: "15:30", kind: "Panel", title: "Trust, compliance and regulation in an AI Africa" },
-  { time: "16:30", kind: "Showcase", title: "The creative and talent economy" },
-  { time: "17:30", kind: "Social", title: "Closing remarks and networking mixer" },
+export const agenda: { time: string; title: string; topic?: TopicId }[] = [
+  { time: "09:00", title: "Doors open, registration and coffee" },
+  { time: "10:00", title: "Opening keynote: The Designer’s Dilemma", topic: "accessibility" },
+  { time: "10:45", title: "Panel: Is design still a seat at the table?", topic: "design" },
+  { time: "11:45", title: "Panel: Designing AI products people trust", topic: "ai" },
+  { time: "12:45", title: "Lunch and portfolio walk" },
+  { time: "14:00", title: "Workshops: Prototyping in code · Inclusive research", topic: "design-engineering" },
+  { time: "15:30", title: "Live build: Vibecoding a product in 45 minutes", topic: "vibecoding" },
+  { time: "16:30", title: "Fireside: Craft and taste in the age of AI", topic: "design" },
+  { time: "17:30", title: "Closing remarks and drinks" },
 ];
 
 // DRAFT: ticket tiers and prices.
@@ -115,22 +115,22 @@ export const tickets = [
   {
     id: "student",
     name: "Student",
-    price: "₦15,000",
+    price: "£45",
     note: "Valid student ID required at the door",
     perks: ["Full-day access", "Workshop seat (first come)", "Lunch and refreshments"],
   },
   {
     id: "general",
     name: "General",
-    price: "₦35,000",
-    note: "Early-bird price until tickets go on general sale",
+    price: "£129",
+    note: "Early-bird price until general sale",
     perks: ["Full-day access", "Reserved workshop seat", "Lunch and refreshments", "Session recordings"],
     featured: true,
   },
   {
     id: "vip",
     name: "VIP",
-    price: "₦90,000",
+    price: "£299",
     note: "Limited to 30 seats",
     perks: ["Everything in General", "Front-row seating", "Speaker dinner the night before", "Event merch pack"],
   },
@@ -139,20 +139,10 @@ export const tickets = [
 export type TicketId = (typeof tickets)[number]["id"];
 
 export const sponsorValue = [
-  {
-    title: "Brand visibility",
-    body: "Lead-partner placement across event materials, digital promotion and YouTube broadcasts.",
-  },
+  { title: "Brand visibility", body: "Lead-partner placement across event materials, digital promotion and live streams." },
   { title: "Thought leadership", body: "A keynote slot for your leadership on the main stage." },
-  {
-    title: "Ecosystem access",
-    body: "Direct time with senior product leaders, fintech innovators and compliance experts.",
-  },
-  {
-    title: "Content amplification",
-    body: "Co-branded video, clips, insights and reports distributed after the event.",
-  },
-  { title: "Talent advantage", body: "Be seen as an employer of choice by top African product and design talent." },
+  { title: "Access to talent", body: "Direct time with senior designers, design engineers and product leaders across the UK." },
+  { title: "Content amplification", body: "Co-branded video, clips, insights and reports distributed after the event." },
 ];
 
 // DRAFT: partnership tiers. The headline package comes from the 2025 deck.
@@ -169,15 +159,10 @@ export const sponsorTiers = [
     ],
   },
   {
-    id: "track",
-    name: "Track partner",
-    slots: "3 available",
-    perks: [
-      "Own one of the six topic tracks",
-      "Panel seat in your track",
-      "Logo on stage and site",
-      "Curated networking session",
-    ],
+    id: "topic",
+    name: "Topic partner",
+    slots: "5 available",
+    perks: ["Own one of the five topics", "Panel seat in your topic", "Logo on stage and site", "Curated networking session"],
   },
   {
     id: "community",
@@ -190,11 +175,15 @@ export const sponsorTiers = [
 export const faqs = [
   {
     q: "Who is Design Spin-off for?",
-    a: "Senior and mid-level product designers, design and innovation leaders in fintech, compliance and regulatory leads, founders, investors and anyone building AI products for African users.",
+    a: "Product and UX designers, design engineers, design leaders, researchers and founders who want an honest look at where design work is heading.",
   },
   {
-    q: "When and where is it happening?",
-    a: "Design Spin-off 2027 takes place in Lagos. We’ll announce the date and venue first to people who register interest. The 2025 edition was held at Polygon HQ on Victoria Island.",
+    q: "Where is it happening?",
+    a: "We’re planning to host Design Spin-off 2027 at Design District on the Greenwich Peninsula in London. The venue and date are confirmed by email to everyone who registers.",
+  },
+  {
+    q: "How do I get there?",
+    a: "Design District is a short walk from North Greenwich station on the Jubilee line, and close to the IFS Cloud Cable Car and Thames Clippers pier.",
   },
   {
     q: "Is there a virtual option?",
@@ -206,10 +195,10 @@ export const faqs = [
   },
   {
     q: "How do I apply to speak?",
-    a: "Send us a short pitch through the contact form with the topic set to Speaking. Tell us the track, your angle and one thing the audience will be able to do afterwards.",
+    a: "We’re inviting speakers based in the UK. Send a short pitch through the contact form with the topic set to Speaking: which of the five topics, your angle, and what the audience will take away.",
   },
   {
     q: "Do you offer group or team tickets?",
-    a: "Yes. Teams of five or more get 15% off General tickets. Choose Tickets as the topic in the contact form and we’ll send an invoice.",
+    a: "Yes. Teams of five or more get 15% off General tickets. Choose Tickets in the contact form and we’ll send an invoice.",
   },
 ];

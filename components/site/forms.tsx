@@ -29,7 +29,7 @@ function useSubmit(kind: string) {
 }
 
 const control =
-  "w-full rounded-md border border-line bg-cocoa px-3 text-[15px] text-cream placeholder:text-sand/60 hover:border-cream/30 focus:border-lilac focus:outline-none";
+  "w-full rounded-lg border border-line bg-paper px-3 text-[15px] text-ink placeholder:text-muted/70 hover:border-ink/30 focus:border-indigo focus:outline-none";
 
 function Field({
   label,
@@ -51,9 +51,9 @@ function Field({
   const id = useId();
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
-      <label htmlFor={id} className="text-[13px] text-sand">
+      <label htmlFor={id} className="text-[13px] text-muted">
         {label}
-        {required ? null : <span className="text-sand/60"> (optional)</span>}
+        {required ? null : <span className="text-muted/70"> (optional)</span>}
       </label>
       <input
         id={id}
@@ -86,13 +86,13 @@ function Select({
   const id = useId();
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
-      <label htmlFor={id} className="text-[13px] text-sand">
+      <label htmlFor={id} className="text-[13px] text-muted">
         {label}
       </label>
       <select
         id={id}
         name={name}
-        className={`${control} h-11 appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 fill=%22none%22><path d=%22M1 1l5 5 5-5%22 stroke=%22%23b8a493%22 stroke-width=%221.5%22/></svg>')] bg-[right_0.9rem_center] bg-no-repeat pr-9`}
+        className={`${control} h-11 appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 fill=%22none%22><path d=%22M1 1l5 5 5-5%22 stroke=%22%236e6e6e%22 stroke-width=%221.5%22/></svg>')] bg-[right_0.9rem_center] bg-no-repeat pr-9`}
         {...(value !== undefined
           ? { value, onChange: (e) => onChange?.(e.target.value) }
           : { defaultValue: options[0]?.value })}
@@ -111,7 +111,7 @@ function TextArea({ label, name, placeholder }: { label: string; name: string; p
   const id = useId();
   return (
     <div className="flex flex-col gap-1.5 sm:col-span-2">
-      <label htmlFor={id} className="text-[13px] text-sand">
+      <label htmlFor={id} className="text-[13px] text-muted">
         {label}
       </label>
       <textarea id={id} name={name} required rows={4} placeholder={placeholder} className={`${control} py-2.5`} />
@@ -145,16 +145,16 @@ function Confirmation({
   return (
     <div
       role="status"
-      className="flex flex-col items-start gap-4 rounded-xl border border-lilac/40 bg-cocoa-2 p-6 sm:p-8"
+      className="flex flex-col items-start gap-4 rounded-xl border border-indigo/40 bg-mist p-6 sm:p-8"
     >
-      <span className="grid size-10 place-items-center rounded-full bg-lilac text-cocoa" aria-hidden>
+      <span className="grid size-10 place-items-center rounded-full bg-indigo text-white" aria-hidden>
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
           <path d="M3.5 9.5l3.5 3.5 7.5-8" stroke="currentColor" strokeWidth="2" />
         </svg>
       </span>
-      <h3 className="font-serif text-3xl">{title}</h3>
-      <div className="max-w-md leading-relaxed text-sand">{children}</div>
-      <button type="button" onClick={onReset} className="text-sm underline underline-offset-4 hover:text-lilac">
+      <h3 className="font-bold tracking-tight text-2xl">{title}</h3>
+      <div className="max-w-md leading-relaxed text-muted">{children}</div>
+      <button type="button" onClick={onReset} className="text-sm underline underline-offset-4 hover:text-indigo">
         {resetLabel}
       </button>
     </div>
@@ -183,23 +183,25 @@ export function TicketsAndRegister() {
             <article
               key={t.id}
               className={`flex flex-col gap-6 rounded-xl border p-6 ${
-                featured ? "border-lilac/60 bg-cocoa-2" : "border-line"
+                featured ? "border-indigo/60 bg-mist" : "border-line"
               }`}
             >
               <div className="flex items-center justify-between gap-4">
                 <h3 className="text-lg font-medium">{t.name}</h3>
                 {featured ? (
-                  <span className="rounded-full bg-lilac px-2.5 py-0.5 text-xs font-medium text-cocoa">Early bird</span>
+                  <span className="rounded-full bg-indigo px-2.5 py-0.5 text-xs font-medium text-white">
+                    Early bird
+                  </span>
                 ) : null}
               </div>
               <div className="flex flex-col gap-1">
-                <p className="font-serif text-5xl tracking-tight tabular-nums">{t.price}</p>
-                <p className="text-[13px] text-sand">{t.note}</p>
+                <p className="text-5xl font-bold tracking-tight tabular-nums">{t.price}</p>
+                <p className="text-[13px] text-muted">{t.note}</p>
               </div>
               <ul className="flex flex-1 flex-col gap-2.5 border-t border-line pt-5 text-[15px]">
                 {t.perks.map((perk) => (
                   <li key={perk} className="flex gap-3">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-lilac" aria-hidden />
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-indigo" aria-hidden />
                     {perk}
                   </li>
                 ))}
@@ -218,7 +220,7 @@ export function TicketsAndRegister() {
 
       <div
         id="register"
-        className="grid scroll-mt-24 gap-10 rounded-2xl border border-line bg-cocoa-2/60 p-6 sm:p-10 lg:grid-cols-[1fr_320px]"
+        className="grid scroll-mt-24 gap-10 rounded-2xl border border-line bg-mist p-6 sm:p-10 lg:grid-cols-[1fr_320px]"
       >
         {status === "sent" ? (
           <Confirmation
@@ -226,24 +228,24 @@ export function TicketsAndRegister() {
             onReset={reset}
             resetLabel="Register someone else"
           >
-            We’ve reserved a <strong className="text-cream">{selected.name}</strong> ticket request for{" "}
-            <strong className="text-cream">{values.email}</strong>. Payment details and the confirmed date and venue
-            will follow by email.
+            We’ve reserved a <strong className="text-ink">{selected.name}</strong> ticket request for{" "}
+            <strong className="text-ink">{values.email}</strong>. Payment details and the confirmed date and venue will
+            follow by email.
           </Confirmation>
         ) : (
           <form onSubmit={onSubmit} className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <h3 className="font-serif text-3xl">Register</h3>
-              <p className="text-sand">Reserve your seat now. We’ll email payment details when tickets go live.</p>
+              <h3 className="font-bold tracking-tight text-2xl">Register</h3>
+              <p className="text-muted">Reserve your seat now. We’ll email payment details when tickets go live.</p>
             </div>
             <fieldset className="flex flex-col gap-2">
-              <legend className="mb-1.5 text-[13px] text-sand">Ticket</legend>
+              <legend className="mb-1.5 text-[13px] text-muted">Ticket</legend>
               <div className="grid gap-2 sm:grid-cols-3">
                 {tickets.map((t) => (
                   <label
                     key={t.id}
-                    className={`flex cursor-pointer items-center justify-between gap-3 rounded-md border px-3 py-2.5 text-[15px] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-lilac ${
-                      tier === t.id ? "border-lilac bg-lilac/10" : "border-line hover:border-cream/30"
+                    className={`flex cursor-pointer items-center justify-between gap-3 rounded-lg border px-3 py-2.5 text-[15px] has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-indigo ${
+                      tier === t.id ? "border-indigo bg-indigo/5" : "border-line hover:border-ink/30"
                     }`}
                   >
                     <input
@@ -255,7 +257,7 @@ export function TicketsAndRegister() {
                       className="sr-only"
                     />
                     <span>{t.name}</span>
-                    <span className="font-mono text-xs text-sand tabular-nums">{t.price}</span>
+                    <span className="text-xs text-muted tabular-nums">{t.price}</span>
                   </label>
                 ))}
               </div>
@@ -280,8 +282,8 @@ export function TicketsAndRegister() {
                 ]}
               />
             </div>
-            <label className="flex items-start gap-3 text-sm text-sand">
-              <input type="checkbox" name="updates" defaultChecked className="mt-0.5 size-4 accent-lilac" />
+            <label className="flex items-start gap-3 text-sm text-muted">
+              <input type="checkbox" name="updates" defaultChecked className="mt-0.5 size-4 accent-indigo" />
               Email me speaker announcements and the confirmed date.
             </label>
             <div>
@@ -292,21 +294,21 @@ export function TicketsAndRegister() {
 
         <aside
           aria-label="Order summary"
-          className="flex flex-col gap-5 self-start rounded-xl border border-line bg-cocoa p-6"
+          className="flex flex-col gap-5 self-start rounded-xl border border-line bg-paper p-6"
         >
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-sand">Your ticket</p>
+          <p className="text-xs text-muted">Your ticket</p>
           <div className="flex items-baseline justify-between gap-4">
             <p className="text-lg font-medium">{selected.name}</p>
-            <p className="font-serif text-3xl tabular-nums">{selected.price}</p>
+            <p className="font-bold tracking-tight text-3xl tabular-nums">{selected.price}</p>
           </div>
-          <ul className="flex flex-col gap-2 border-t border-line pt-4 text-sm text-sand">
+          <ul className="flex flex-col gap-2 border-t border-line pt-4 text-sm text-muted">
             {selected.perks.map((perk) => (
               <li key={perk}>{perk}</li>
             ))}
           </ul>
-          <p className="border-t border-line pt-4 text-[13px] leading-relaxed text-sand">
+          <p className="border-t border-line pt-4 text-[13px] leading-relaxed text-muted">
             Teams of five or more get 15% off General tickets.{" "}
-            <a href="#contact" className="text-cream underline underline-offset-4">
+            <a href="#contact" className="text-ink underline underline-offset-4">
               Ask for an invoice
             </a>
             .
@@ -324,19 +326,16 @@ export function SponsorForm() {
   if (status === "sent") {
     return (
       <Confirmation title="Thanks, we’ll be in touch." onReset={reset} resetLabel="Send another enquiry">
-        The Sections partnerships team will email <strong className="text-cream">{values.email}</strong> with the 2027
+        The Sections partnerships team will email <strong className="text-ink">{values.email}</strong> with the 2027
         partner deck within two working days.
       </Confirmation>
     );
   }
   return (
-    <form
-      onSubmit={onSubmit}
-      className="grid gap-4 rounded-2xl border border-line bg-cocoa-2/60 p-6 sm:grid-cols-2 sm:p-8"
-    >
+    <form onSubmit={onSubmit} className="grid gap-4 rounded-2xl border border-line bg-mist p-6 sm:grid-cols-2 sm:p-8">
       <div className="flex flex-col gap-2 sm:col-span-2">
-        <h3 className="font-serif text-3xl">Request the partner deck</h3>
-        <p className="text-sand">Tell us a little about your company and we’ll send pricing and availability.</p>
+        <h3 className="font-bold tracking-tight text-2xl">Request the partner deck</h3>
+        <p className="text-muted">Tell us a little about your company and we’ll send pricing and availability.</p>
       </div>
       <Field label="Full name" name="name" autoComplete="name" />
       <Field label="Work email" name="email" type="email" autoComplete="email" />
@@ -369,7 +368,7 @@ export function ContactForm() {
     return (
       <Confirmation title="Message sent." onReset={reset} resetLabel="Write another message">
         Thanks, {values.name || "there"}. We reply within two working days at{" "}
-        <strong className="text-cream">{values.email}</strong>.
+        <strong className="text-ink">{values.email}</strong>.
       </Confirmation>
     );
   }

@@ -1,18 +1,26 @@
 import type { ReactNode } from "react";
+import { topics, type TopicId } from "./content";
 
 export function Wordmark() {
   return (
     <span className="flex items-baseline gap-2 whitespace-nowrap">
-      <span className="font-serif text-[1.35rem] font-medium tracking-tight">Design Spin-off</span>
-      <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-sand sm:inline">by Sections</span>
+      <span className="text-[1.1rem] font-bold tracking-tight">Design Spin-off</span>
+      <span className="hidden text-xs text-muted sm:inline">by Sections</span>
     </span>
   );
 }
 
 const sizes = {
-  sm: "h-8 px-3 text-[13px]",
-  md: "h-10 px-4 text-sm",
+  sm: "h-9 px-4 text-[13px]",
+  md: "h-12 px-8 text-sm",
 };
+
+export function buttonClass(variant: "solid" | "outline" = "solid", size: keyof typeof sizes = "md") {
+  const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium whitespace-nowrap transition-colors ${sizes[size]}`;
+  return variant === "solid"
+    ? `${base} bg-indigo text-white hover:bg-indigo-dark`
+    : `${base} border border-ink/15 text-ink hover:border-ink/40`;
+}
 
 export function ButtonLink({
   href,
@@ -32,15 +40,8 @@ export function ButtonLink({
   );
 }
 
-export function buttonClass(variant: "solid" | "outline" = "solid", size: keyof typeof sizes = "md") {
-  const base = `inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-colors ${sizes[size]}`;
-  return variant === "solid"
-    ? `${base} bg-cream text-cocoa hover:bg-white`
-    : `${base} border border-cream/35 text-cream hover:border-cream hover:bg-cream/5`;
-}
-
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-lilac">{children}</p>;
+  return <p className="text-[15px] text-muted">{children}</p>;
 }
 
 export function SectionHead({
@@ -58,8 +59,8 @@ export function SectionHead({
     <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <div className="flex max-w-2xl flex-col gap-4">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-balance sm:text-5xl">{title}</h2>
-        {body ? <p className="max-w-xl leading-relaxed text-sand">{body}</p> : null}
+        <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">{title}</h2>
+        {body ? <p className="max-w-xl leading-relaxed text-muted">{body}</p> : null}
       </div>
       {aside}
     </div>
@@ -68,24 +69,31 @@ export function SectionHead({
 
 export function Section({ id, children, className = "" }: { id: string; children: ReactNode; className?: string }) {
   return (
-    <section id={id} className={`border-t border-line ${className}`}>
-      <div className="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-20 sm:px-8 sm:py-28">{children}</div>
+    <section id={id} className={className}>
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 sm:px-8 sm:py-28">{children}</div>
     </section>
   );
 }
 
 export function Draft({ children = "Draft" }: { children?: ReactNode }) {
   return (
-    <span className="inline-flex h-6 w-fit shrink-0 items-center rounded-full border border-lilac/40 px-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-lilac">
+    <span className="inline-flex h-7 w-fit shrink-0 items-center rounded-full bg-mist px-3 text-xs text-muted">
       {children}
     </span>
   );
 }
 
-export function initials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("");
+export function topicById(id: TopicId) {
+  return topics.find((t) => t.id === id)!;
+}
+
+/** A small solid block in the topic's colour, echoing the hero stack. */
+export function TopicChip({ id }: { id: TopicId }) {
+  const t = topicById(id);
+  return (
+    <span className="inline-flex w-fit items-center gap-2 text-[13px] text-muted">
+      <span aria-hidden className="h-3 w-5" style={{ background: t.color }} />
+      {t.name}
+    </span>
+  );
 }

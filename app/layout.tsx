@@ -1,33 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, JetBrains_Mono, Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
+const sora = localFont({
+  src: "./fonts/Sora-VariableFont_wght.ttf",
+  weight: "100 800",
+  variable: "--font-sora",
 });
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-figtree" });
-const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
 
 export const metadata: Metadata = {
   title: "Design Spin-off 2027",
   description:
-    "Design Spin-off is Sections' annual design conference in Lagos. Topics, speakers, agenda, tickets and sponsorship for the 2027 edition.",
+    "Design Spin-off is Sections' annual design conference, coming to London's Design District in 2027. Topics, speakers, agenda, tickets and sponsorship.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1b110b",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${newsreader.variable} ${figtree.variable} ${jetbrains.variable}`}
-    >
+    <html lang="en" className={sora.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

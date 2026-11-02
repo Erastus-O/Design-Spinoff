@@ -29,11 +29,7 @@ export function Footer() {
         <div className="flex flex-col gap-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
           <Wordmark className="h-11" />
           <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
-            {[
-              ...nav,
-              { href: homeAnchor("partners"), label: "Partners" },
-              { href: homeAnchor("contact"), label: "Contact" },
-            ].map((item) => (
+            {[...nav, { href: homeAnchor("contact"), label: "Contact" }].map((item) => (
               <a key={item.href} href={item.href} className="hover:text-ink">
                 {item.label}
               </a>

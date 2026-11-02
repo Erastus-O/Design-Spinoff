@@ -1,17 +1,4 @@
-import Image from "next/image";
-import {
-  agenda,
-  event,
-  faqs,
-  hero,
-  speakerOrgs2025,
-  speakerSlots,
-  partners,
-  stats2025,
-  routes,
-  tickets,
-  topics,
-} from "@/components/site/content";
+import { agenda, event, faqs, hero, speakerSlots, partners, routes, tickets, topics } from "@/components/site/content";
 import { ContactForm } from "@/components/site/forms";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -29,7 +16,6 @@ export default function Home() {
         <Speakers />
         <Agenda />
         <TicketsTeaser />
-        <Recap />
         <Faqs />
         <Contact />
       </main>
@@ -328,41 +314,6 @@ function TicketsTeaser() {
           See tickets and register
         </a>
       </div>
-    </Section>
-  );
-}
-
-/* ---------- Recap (2025, Lagos) ---------- */
-
-function Recap() {
-  return (
-    <Section id="recap" className="bg-mist">
-      <SectionHead
-        eyebrow="Where it started"
-        title="Design Spin-off 2025, Lagos"
-        body={`Our last edition filled The Polygon HQ on Victoria Island, with speakers from ${speakerOrgs2025
-          .slice(0, 5)
-          .join(", ")} and more.`}
-      />
-      <div className="grid gap-3 sm:grid-cols-3">
-        {[
-          ["/images/2025-panel.webp", "Two panelists in conversation on the Design Spin-off 2025 stage"],
-          ["/images/2025-crowd.webp", "The audience listening during a session"],
-          ["/images/2025-audience-qa.webp", "An attendee asking a question during the Q&A"],
-        ].map(([src, alt]) => (
-          <figure key={src} className="relative aspect-[4/3] max-w-full overflow-hidden rounded-2xl">
-            <Image src={src} alt={alt} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover" />
-          </figure>
-        ))}
-      </div>
-      <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-        {stats2025.map((s, i) => (
-          <Reveal key={s.label} delay={i * 90} className="flex flex-col gap-1">
-            <dd className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">{s.value}</dd>
-            <dt className="text-sm text-muted">{s.label}</dt>
-          </Reveal>
-        ))}
-      </dl>
     </Section>
   );
 }

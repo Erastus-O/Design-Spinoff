@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Silkscreen } from "next/font/google";
 import localFont from "next/font/local";
-import { PixelStrip } from "@/components/site/pixel-strip";
 import "./globals.css";
 
 const sora = localFont({
@@ -26,10 +25,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sora.variable} ${silkscreen.variable}`}>
-      <body className="font-sans antialiased lg:pr-14">
-        {children}
-        <PixelStrip />
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

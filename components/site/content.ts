@@ -106,17 +106,14 @@ export const speakerOrgs2025 = [
   "Africhange",
 ];
 
-// TBA: 2027 speakers come from a curated UK list; slots show the topic and
-// format until each name is announced.
-export const speakerSlots: { topic: TopicId; format: string }[] = [
-  { topic: "accessibility", format: "Keynote" },
-  { topic: "design", format: "Panel" },
-  { topic: "design-engineering", format: "Workshop" },
-  { topic: "ai", format: "Panel" },
-  { topic: "vibecoding", format: "Live build" },
-  { topic: "design", format: "Fireside" },
-  { topic: "ai", format: "Talk" },
-  { topic: "accessibility", format: "Workshop" },
+// TBA: 2027 speakers, one per topic. Add `name` and `role` as each is
+// confirmed; until then the card reads "Name to be announced".
+export const speakerSlots: { topic: TopicId; format: string; photo: string; name?: string; role?: string }[] = [
+  { topic: "accessibility", format: "Keynote", photo: "/images/speakers/speaker-1.webp" },
+  { topic: "design", format: "Panel", photo: "/images/speakers/speaker-2.webp" },
+  { topic: "design-engineering", format: "Workshop", photo: "/images/speakers/speaker-3.webp" },
+  { topic: "ai", format: "Panel", photo: "/images/speakers/speaker-4.webp" },
+  { topic: "vibecoding", format: "Live build", photo: "/images/speakers/speaker-5.webp" },
 ];
 
 // DRAFT: programme shape for the day; sessions confirmed with speakers.

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   agenda,
   dilemma,
@@ -284,24 +285,36 @@ function Speakers() {
           </ButtonLink>
         }
       />
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
         {speakerSlots.map((s, i) => {
           const t = topicById(s.topic);
           return (
-            <Reveal as="li" key={i} delay={(i % 4) * 90} className="group flex flex-col gap-4">
-              <div className="relative flex aspect-square max-w-full flex-col justify-end overflow-hidden rounded-lg bg-mist">
+            <Reveal
+              as="li"
+              key={s.photo}
+              delay={i * 90}
+              className="group flex flex-col gap-4 max-md:last:col-span-2 max-md:last:mx-auto max-md:last:w-[calc(50%-0.5rem)]"
+            >
+              <div className="relative aspect-[4/5] max-w-full overflow-hidden rounded-lg bg-mist">
+                <Image
+                  src={s.photo}
+                  alt={s.name ? s.name : `Speaker for ${t.name}, name to be announced`}
+                  fill
+                  sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
                 <Reveal
                   as="span"
                   variant="drop"
-                  delay={(i % 4) * 90 + 250}
+                  delay={i * 90 + 250}
                   aria-hidden
-                  className="block h-[22%] transition-[height] duration-300 group-hover:h-[40%]"
+                  className="absolute bottom-0 left-0 block h-[8%] transition-[height] duration-300 group-hover:h-[14%]"
                   style={{ background: t.color, width: `${60 + ((i * 13) % 35)}%` }}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <p className="font-semibold">To be announced</p>
-                <p className="text-sm text-muted">{s.format}</p>
+                <p className="font-semibold">{s.name ?? "Name to be announced"}</p>
+                <p className="text-sm text-muted">{s.role ? `${s.role} · ${s.format}` : s.format}</p>
                 <TopicChip id={s.topic} />
               </div>
             </Reveal>

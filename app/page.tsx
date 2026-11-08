@@ -1,4 +1,15 @@
-import { agenda, event, faqs, hero, speakerSlots, partners, routes, tickets, topics } from "@/components/site/content";
+import {
+  agenda,
+  dilemma,
+  event,
+  faqs,
+  hero,
+  speakerSlots,
+  partners,
+  routes,
+  tickets,
+  topics,
+} from "@/components/site/content";
 import { ContactForm } from "@/components/site/forms";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -12,6 +23,7 @@ export default function Home() {
       <main id="top">
         <Hero />
         <Partners />
+        <Dilemma />
         <Topics />
         <Speakers />
         <Agenda />
@@ -171,6 +183,46 @@ function Partners() {
   );
 }
 
+/* ---------- The dilemma (opening hook from the talk outline) ---------- */
+
+function Dilemma() {
+  return (
+    <Section id="dilemma">
+      <SectionHead
+        eyebrow="The Designer’s Dilemma"
+        title="Who designs now?"
+        body="Two numbers that seem to disagree."
+      />
+      <div className="grid gap-3 md:grid-cols-2">
+        {dilemma.numbers.map((n, i) => (
+          <Reveal
+            key={n.value}
+            delay={i * 120}
+            className="flex flex-col gap-4 rounded-lg border border-line bg-card p-7 sm:p-9"
+          >
+            <p className="text-7xl font-semibold tracking-[-0.05em] tabular-nums sm:text-8xl">{n.value}</p>
+            <p className="max-w-sm text-[15px] leading-relaxed">{n.label}</p>
+            <p className="text-[12px] text-muted">Source: {n.source}</p>
+          </Reveal>
+        ))}
+      </div>
+      <p className="text-xl font-medium tracking-tight">{dilemma.line}</p>
+      <ol className="grid gap-8 border-t border-line pt-8 md:grid-cols-3">
+        {dilemma.takeaways.map((t, i) => (
+          <li key={t.title} className="flex flex-col gap-2">
+            <span className="text-[13px] text-muted tabular-nums">0{i + 1}</span>
+            <h3 className="text-lg font-semibold tracking-tight">{t.title}</h3>
+            <p className="text-sm leading-relaxed text-muted">{t.body}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="max-w-3xl text-2xl leading-snug font-medium tracking-tight text-balance sm:text-3xl">
+        “{dilemma.close}”
+      </p>
+    </Section>
+  );
+}
+
 /* ---------- Topics ---------- */
 
 function Topics() {
@@ -179,7 +231,7 @@ function Topics() {
       <SectionHead
         eyebrow="Key design topics"
         title="Five forces reshaping design work"
-        body="Every session sits in one of five topics. Together they make up the designer’s dilemma: what to learn, what to keep and what to let go."
+        body="Routine production is getting cheaper and judgement is getting more valuable. Every session sits in one of five topics, which together make up the designer’s dilemma."
       />
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {topics.map((t, i) => (

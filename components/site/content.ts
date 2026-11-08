@@ -42,7 +42,7 @@ export const nav = [
 export const hero = {
   eyebrow: "The Designer’s Dilemma",
   title: "Exploring the design landscape in today’s industry",
-  body: "Design Spin-off is Sections’ annual conference on the practical reality of design and product work. In 2027 we bring it to London’s Design District, with speakers from across the UK.",
+  body: "AI isn’t ending design. It’s changing who designs, what design is worth and who owns it. Design Spin-off 2027 brings designers, design leaders, students and the people who hire them to London’s Design District to work out what that means.",
 };
 
 // The five topics, in the order they stack in the hero card. `bar` sets each
@@ -54,35 +54,35 @@ export const topics = [
     name: "Accessibility",
     color: "var(--color-navy)",
     bar: { left: 7, width: 84, align: "center" },
-    body: "Designing for every body and every context: inclusive research, WCAG in practice, and making accessibility part of the process instead of a final audit.",
+    body: "The European Accessibility Act has applied since June 2025, and no automated tool covers every requirement. One design skill AI can’t fully take over, and the law now requires it.",
   },
   {
     id: "design",
     name: "Design",
     color: "var(--color-orange)",
     bar: { left: 0, width: 35, align: "start" },
-    body: "Craft, critique and taste. How senior designers frame problems, build systems and make the case for good work inside real constraints.",
+    body: "Owning the decision, not the deliverable: pricing work when clients think AI makes it quick, the missing first rung for junior designers, and the return of human craft.",
   },
   {
     id: "design-engineering",
     name: "Design Engineering",
     color: "var(--color-cyan)",
     bar: { left: 35, width: 65, align: "end" },
-    body: "The space between Figma and production: prototyping in code, design tokens, motion and the people who work across both sides.",
+    body: "The share of designers doing development work doubled to 41% in a year. Prototypes run on real code, handoff becomes a code review, and design engineers become the default hire.",
   },
   {
     id: "ai",
     name: "Artificial Intelligence",
     color: "var(--color-crimson)",
     bar: { left: 0, width: 75, align: "center" },
-    body: "What changes when the interface writes back. Designing AI products people trust, and using AI in the design process without losing judgement.",
+    body: "Designing for AI agents: show people what the system understood and let them reject a wrong suggestion. Plus copyright, consent and who gets paid for training data.",
   },
   {
     id: "vibecoding",
     name: "Vibecoding",
     color: "var(--color-salmon)",
     bar: { left: 5, width: 84, align: "center" },
-    body: "Shipping by describing. Where prompt-built software helps designers move faster, where it breaks, and what it means for the role.",
+    body: "Who owns the canvas when a PM or engineer shows you an AI prototype before the brief? Where prompt-built software speeds the work up, and where it quietly breaks.",
   },
 ] as const;
 
@@ -122,14 +122,18 @@ export const speakerSlots: { topic: TopicId; format: string }[] = [
 // DRAFT: programme shape for the day; sessions confirmed with speakers.
 export const agenda: { time: string; title: string; topic?: TopicId }[] = [
   { time: "09:00", title: "Doors open, registration and coffee" },
-  { time: "10:00", title: "Opening keynote: The Designer’s Dilemma", topic: "accessibility" },
-  { time: "10:45", title: "Panel: Is design still a seat at the table?", topic: "design" },
-  { time: "11:45", title: "Panel: Designing AI products people trust", topic: "ai" },
-  { time: "12:45", title: "Lunch and portfolio walk" },
-  { time: "14:00", title: "Workshops: Prototyping in code · Inclusive research", topic: "design-engineering" },
-  { time: "15:30", title: "Live build: Vibecoding a product in 45 minutes", topic: "vibecoding" },
-  { time: "16:30", title: "Fireside: Craft and taste in the age of AI", topic: "design" },
-  { time: "17:30", title: "Closing remarks and drinks" },
+  { time: "10:00", title: "Opening: Who designs now? Two numbers that seem to disagree" },
+  { time: "10:10", title: "Part 1, The squeeze: jobs, pay and the missing first rung", topic: "design" },
+  { time: "10:40", title: "Part 2, The shake-up: roles, tools and who owns the canvas", topic: "design-engineering" },
+  { time: "11:15", title: "Part 3, The rules: copyright and accessibility", topic: "accessibility" },
+  { time: "11:45", title: "Part 4, The new craft: designing for AI agents and trust", topic: "ai" },
+  { time: "12:15", title: "Q&A: Would you hire a junior designer in 2027?" },
+  { time: "12:45", title: "Lunch" },
+  { time: "14:00", title: "Workshop: A day in the life of an AI-native designer, live demo", topic: "vibecoding" },
+  { time: "14:30", title: "Hands-on build in teams of three: designer, engineer, user", topic: "design-engineering" },
+  { time: "15:30", title: "Test, critique and debrief: what did the AI miss?", topic: "accessibility" },
+  { time: "16:30", title: "Close: Own the decision, not the deliverable" },
+  { time: "17:00", title: "Drinks" },
 ];
 
 // DRAFT: ticket tiers and prices.
@@ -168,7 +172,7 @@ export const partners: { name: string; logo?: string }[] = [{ name: "Sections" }
 export const faqs = [
   {
     q: "Who is Design Spin-off for?",
-    a: "Product and UX designers, design engineers, design leaders, researchers and founders who want an honest look at where design work is heading.",
+    a: "Designers, design leaders, students and the people who hire designers. If you’re working out what your role looks like now that AI can generate a thousand options, it’s for you.",
   },
   {
     q: "Where is it happening?",
@@ -177,6 +181,10 @@ export const faqs = [
   {
     q: "How do I get there?",
     a: "Design District is a short walk from North Greenwich station on the Jubilee line, and close to the IFS Cloud Cable Car and Thames Clippers pier.",
+  },
+  {
+    q: "Do I need to code for the workshop?",
+    a: "No. The afternoon workshop has two tracks. Track A is no-code, using tools like Claude Design or Figma Make plus an AI chat, and ends in a clickable prototype. Track B is for people comfortable in a code editor and ends with a feature running locally and a pull request.",
   },
   {
     q: "Is there a virtual option?",
@@ -251,3 +259,22 @@ export const journeyCards = [
     stat: { value: "6", label: "Sponsors and partners" },
   },
 ];
+
+// The opening hook from the 2027 talk outline: two numbers that seem to
+// disagree. Sources as cited in the outline.
+export const dilemma = {
+  numbers: [
+    { value: "82%", label: "of hiring leaders say their need for designers has held steady or grown", source: "Figma" },
+    { value: "57%", label: "fall in graphic design job postings worldwide over the past year", source: "Via News" },
+  ],
+  line: "Both of these are true. Design Spin-off 2027 is about why.",
+  takeaways: [
+    {
+      title: "Own the decision, not the deliverable",
+      body: "Taste, research and judgement are what clients still pay for.",
+    },
+    { title: "Build systems, not just screens", body: "Design systems, prompt frameworks and trust patterns." },
+    { title: "Learn the rules", body: "Accessibility and copyright are now part of design work." },
+  ],
+  close: "AI can generate a thousand options. Someone still has to decide which one is right, and why.",
+};

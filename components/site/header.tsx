@@ -9,10 +9,15 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    // The page scrolls inside the Bend container, not the window, so listen to
+    // scroll events from any element and read the one that scrolled.
+    const onScroll = (e: Event) => {
+      const t = e.target;
+      const top = t instanceof Element ? t.scrollTop : window.scrollY;
+      setScrolled(top > 24);
+    };
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    return () => document.removeEventListener("scroll", onScroll, { capture: true });
   }, []);
 
   return (

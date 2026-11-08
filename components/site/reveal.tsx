@@ -34,6 +34,9 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Inside Bend's HTML-in-canvas mode the page is drawn into a canvas, where
+    // visibility observers can't be relied on: show content as-is there.
+    if (el.closest("canvas")) return;
     if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
     setState("armed");
     const io = new IntersectionObserver(

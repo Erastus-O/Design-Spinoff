@@ -37,21 +37,8 @@ html {
   color-scheme: light;
 }
 
-/* The Bend scroller is the page: never let it scroll sideways (its inline
-   style sets overflow: auto on both axes). */
-.bend-site > div,
-.bend-site > canvas > div {
-  overflow-x: hidden !important;
-  overscroll-behavior-y: none;
-}
-
-/* Anchor jumps land below the sticky header inside the Bend scroller. */
-[id] {
-  scroll-margin-top: 5.5rem;
-}
-
 body {
-  overflow: hidden;
+  overflow-x: clip;
   background: var(--color-paper);
   color: var(--color-ink);
 }

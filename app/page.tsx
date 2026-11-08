@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { agenda, event, faqs, hero, speakerSlots, partners, routes, tickets, topics } from "@/components/site/content";
 import { ContactForm } from "@/components/site/forms";
 import { Footer } from "@/components/site/footer";
@@ -42,69 +43,81 @@ function InlineChip({ src, alt, className = "" }: { src?: string; alt?: string; 
 
 function Hero() {
   return (
-    <section aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-7 px-5 pt-14 pb-16 text-center sm:px-8 md:pt-20 md:pb-20">
-        <p className="flex items-center gap-2 text-[13px] text-muted">
-          <span aria-hidden className="size-1.5 bg-ink" />
-          {hero.eyebrow} · {event.city} · {event.edition}
-        </p>
-        <h1
-          id="hero-title"
-          className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[5.2rem]"
-        >
-          Exploring the <InlineChip src="/images/2025-panel.webp" alt="" /> design landscape in today’s{" "}
-          <InlineChip className="bg-px-green" /> industry
-        </h1>
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted">{hero.body}</p>
-
-        {/* The reference's prompt box, here a quick way into registration. */}
-        <form action={routes.tickets} method="get" className="mt-4 flex w-full max-w-3xl items-stretch gap-2 text-left">
-          <label className="flex min-h-36 flex-1 flex-col justify-between rounded-md bg-mist p-4 sm:p-5">
-            <span className="text-[13px] text-muted">Reserve your seat for Design Spin-off 2027</span>
-            <input
-              type="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder="you@studio.com"
-              className="w-full border-b border-ink/20 bg-transparent pb-1 text-lg placeholder:text-ink/30 focus:border-ink focus:outline-none sm:text-xl"
-            />
-          </label>
-          <button
-            type="submit"
-            aria-label="Continue to tickets"
-            className="grid w-24 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-36"
+    <section aria-labelledby="hero-title" className="px-2 sm:px-4">
+      <div className="relative isolate overflow-hidden rounded-xl bg-[#2a1680] text-white">
+        <Image src="/images/hero-bg.webp" alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
+        {/* A light wash keeps white text readable over the bright highlights. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgb(20_10_70/0.45),rgb(20_10_70/0.15)_70%)]"
+        />
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-7 px-5 pt-16 pb-16 text-center sm:px-8 md:pt-24 md:pb-20">
+          <p className="flex items-center gap-2 text-[13px] text-white/80">
+            <span aria-hidden className="size-1.5 bg-white" />
+            {hero.eyebrow} · {event.city} · {event.edition}
+          </p>
+          <h1
+            id="hero-title"
+            className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[5.2rem]"
           >
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
-            </svg>
-          </button>
-        </form>
-        <ul className="-mt-3 flex w-full max-w-3xl flex-wrap gap-1.5" aria-label="Topics">
-          {topics.map((t) => (
-            <li key={t.id}>
-              <a
-                href={`#topic-${t.id}`}
-                className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
-                style={{ background: t.color }}
-              >
-                {t.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <dl className="mt-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-[13px]">
-          {[
-            ["When", event.date],
-            ["Expected venue", event.venue],
-            ["Format", event.format],
-          ].map(([k, v]) => (
-            <div key={k} className="flex gap-2">
-              <dt className="text-muted">{k}</dt>
-              <dd className="font-medium">{v}</dd>
-            </div>
-          ))}
-        </dl>
+            Exploring the <InlineChip src="/images/2025-panel.webp" alt="" /> design landscape in today’s{" "}
+            <InlineChip className="bg-px-green" /> industry
+          </h1>
+          <p className="max-w-xl text-[15px] leading-relaxed text-white/85">{hero.body}</p>
+
+          {/* The reference's prompt box, here a quick way into registration. */}
+          <form
+            action={routes.tickets}
+            method="get"
+            className="mt-4 flex w-full max-w-3xl items-stretch gap-2 text-left"
+          >
+            <label className="flex min-h-36 flex-1 flex-col justify-between rounded-md border border-white/25 bg-white/15 p-4 backdrop-blur-md sm:p-5">
+              <span className="text-[13px] text-white/80">Reserve your seat for Design Spin-off 2027</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autoComplete="email"
+                placeholder="you@studio.com"
+                className="w-full border-b border-white/40 bg-transparent pb-1 text-lg text-white placeholder:text-white/50 focus:border-white focus:outline-none sm:text-xl"
+              />
+            </label>
+            <button
+              type="submit"
+              aria-label="Continue to tickets"
+              className="grid w-24 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-36"
+            >
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
+              </svg>
+            </button>
+          </form>
+          <ul className="-mt-3 flex w-full max-w-3xl flex-wrap gap-1.5" aria-label="Topics">
+            {topics.map((t) => (
+              <li key={t.id}>
+                <a
+                  href={`#topic-${t.id}`}
+                  className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
+                  style={{ background: t.color }}
+                >
+                  {t.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <dl className="mt-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-[13px]">
+            {[
+              ["When", event.date],
+              ["Expected venue", event.venue],
+              ["Format", event.format],
+            ].map(([k, v]) => (
+              <div key={k} className="flex gap-2">
+                <dt className="text-white/70">{k}</dt>
+                <dd className="font-medium">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
     </section>
   );

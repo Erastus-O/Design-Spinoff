@@ -1,15 +1,24 @@
 @import "tailwindcss";
 
-/* Layout: white page, generous whitespace, black Sora headlines and grey body
-   copy; colour only appears in the five topic blocks and the indigo button. */
+/* Layout: an editorial off-white page in the manner of the reference (Brik):
+   big tight grotesk headlines, small grey labels, thin rules, black buttons,
+   one electric-blue accent and a pixel-art strip down the right edge. */
 @theme {
-  --color-paper: #ffffff;
-  --color-mist: #f8f8f8;
-  --color-line: #ebebeb;
+  --color-paper: #f4f4f1;
+  --color-mist: #e8e8e4;
+  --color-card: #ffffff;
+  --color-line: #d9d9d4;
   --color-ink: #0b0b0b;
-  --color-muted: #6e6e6e;
-  --color-indigo: #380c8f;
-  --color-indigo-dark: #2a0870;
+  --color-muted: #696964;
+  --color-indigo: #1f3bff;
+  --color-indigo-dark: #142ad6;
+
+  /* Pixel-art palette for the edge strip and footer. */
+  --color-px-lilac: #b9a1ff;
+  --color-px-green: #2fd65a;
+  --color-px-pink: #ff9fdc;
+  --color-px-red: #e8232f;
+  --color-px-olive: #4f4d13;
 
   /* Topic colours, from the reference composition. */
   --color-navy: #0f4c8a;
@@ -19,6 +28,7 @@
   --color-salmon: #ffa896;
 
   --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
 }
 
 html {

@@ -112,7 +112,7 @@ export function JourneyCarousel() {
             <article
               key={card.title}
               data-card
-              className="flex w-[17rem] shrink-0 snap-start flex-col rounded-2xl bg-mist sm:w-[20rem]"
+              className="flex w-[17rem] shrink-0 snap-start flex-col rounded-lg border border-line bg-card sm:w-[20rem]"
             >
               <div className="relative m-3 h-[17rem] overflow-hidden rounded-xl sm:h-[20rem]">
                 <Image

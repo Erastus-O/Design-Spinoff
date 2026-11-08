@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useId, useState, type FormEvent, type ReactNode } from "react";
 import { homeAnchor, tickets, type TicketId } from "./content";
 import { buttonClass } from "./primitives";
 import { Reveal } from "./reveal";
@@ -30,7 +30,7 @@ function useSubmit(kind: string) {
 }
 
 const control =
-  "w-full rounded-lg border border-line bg-paper px-3 text-[15px] text-ink placeholder:text-muted/70 hover:border-ink/30 focus:border-indigo focus:outline-none";
+  "w-full rounded-lg border border-line bg-card px-3 text-[15px] text-ink placeholder:text-muted/70 hover:border-ink/30 focus:border-indigo focus:outline-none";
 
 function Field({
   label,
@@ -39,9 +39,11 @@ function Field({
   required = true,
   placeholder,
   autoComplete,
+  defaultValue,
   className = "",
 }: {
   label: string;
+  defaultValue?: string;
   name: string;
   type?: string;
   required?: boolean;
@@ -63,6 +65,7 @@ function Field({
         required={required}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        defaultValue={defaultValue}
         className={`${control} h-11`}
       />
     </div>
@@ -166,6 +169,15 @@ function Confirmation({
 
 export function TicketsAndRegister() {
   const [tier, setTier] = useState<TicketId>("general");
+  // The hero's email box sends people here with ?email=…; carry it into the form.
+  const [prefill, setPrefill] = useState("");
+  useEffect(() => {
+    const email = new URLSearchParams(window.location.search).get("email");
+    if (email) {
+      setPrefill(email);
+      document.getElementById("register")?.scrollIntoView();
+    }
+  }, []);
   const { status, values, onSubmit, reset } = useSubmit("registration");
   const selected = tickets.find((t) => t.id === tier) ?? tickets[1];
 
@@ -186,7 +198,7 @@ export function TicketsAndRegister() {
               key={t.id}
               delay={i * 100}
               className={`flex flex-col gap-6 rounded-xl border p-6 ${
-                featured ? "border-indigo/60 bg-mist" : "border-line"
+                featured ? "border-ink bg-card" : "border-line bg-card"
               }`}
             >
               <div className="flex items-center justify-between gap-4">
@@ -223,7 +235,7 @@ export function TicketsAndRegister() {
 
       <div
         id="register"
-        className="grid scroll-mt-24 gap-10 rounded-2xl border border-line bg-mist p-6 sm:p-10 lg:grid-cols-[1fr_320px]"
+        className="grid scroll-mt-24 gap-10 rounded-lg border border-line bg-card p-6 sm:p-10 lg:grid-cols-[1fr_320px]"
       >
         {status === "sent" ? (
           <Confirmation
@@ -268,7 +280,14 @@ export function TicketsAndRegister() {
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="First name" name="firstName" autoComplete="given-name" />
               <Field label="Last name" name="lastName" autoComplete="family-name" />
-              <Field label="Email" name="email" type="email" autoComplete="email" />
+              <Field
+                key={prefill}
+                label="Email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                defaultValue={prefill}
+              />
               <Field label="Phone" name="phone" type="tel" autoComplete="tel" required={false} />
               <Field label="Role" name="role" placeholder="e.g. Product Designer" autoComplete="organization-title" />
               <Field label="Company or school" name="company" autoComplete="organization" required={false} />

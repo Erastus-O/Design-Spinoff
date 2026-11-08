@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import { Silkscreen } from "next/font/google";
 import localFont from "next/font/local";
+import { PixelStrip } from "@/components/site/pixel-strip";
 import "./globals.css";
 
 const sora = localFont({
@@ -8,6 +10,9 @@ const sora = localFont({
   variable: "--font-sora",
 });
 
+// Pixel face for the footer wordmark and edge-strip labels.
+const silkscreen = Silkscreen({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-silkscreen" });
+
 export const metadata: Metadata = {
   title: "Design Spin-off 2027",
   description:
@@ -15,15 +20,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f4f4f1",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={sora.variable}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang="en" className={`${sora.variable} ${silkscreen.variable}`}>
+      <body className="font-sans antialiased lg:pr-14">
+        {children}
+        <PixelStrip />
+      </body>
     </html>
   );
 }

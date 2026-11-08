@@ -33,14 +33,14 @@ export default function JourneyPage() {
           </div>
         </section>
 
-        <Section id="speakers-2025" className="bg-mist">
+        <Section id="speakers-2025">
           <SectionHead eyebrow="On stage" title="The 2025 speakers" />
           <ul className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4">
             {recap2025.speakers.map((s, i) => (
               <Reveal as="li" key={s.name} delay={(i % 4) * 80} className="flex items-center gap-4">
                 <span
                   aria-hidden
-                  className="grid size-12 shrink-0 place-items-center rounded-full bg-paper text-sm font-semibold"
+                  className="grid size-12 shrink-0 place-items-center rounded-full bg-mist text-sm font-semibold"
                 >
                   {initials(s.name)}
                 </span>
@@ -56,7 +56,7 @@ export default function JourneyPage() {
         </Section>
 
         <Section id="next">
-          <div className="flex flex-col gap-8 rounded-3xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-8 rounded-xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
             <div className="flex max-w-xl flex-col gap-4">
               <p className="text-[15px] text-white/70">Next</p>
               <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">

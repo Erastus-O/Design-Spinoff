@@ -20,10 +20,10 @@ const sizes = {
 };
 
 export function buttonClass(variant: "solid" | "outline" = "solid", size: keyof typeof sizes = "md") {
-  const base = `inline-flex items-center justify-center gap-2 rounded-lg font-medium whitespace-nowrap transition-colors ${sizes[size]}`;
+  const base = `inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-colors ${sizes[size]}`;
   return variant === "solid"
-    ? `${base} bg-indigo text-white hover:bg-indigo-dark`
-    : `${base} border border-ink/15 text-ink hover:border-ink/40`;
+    ? `${base} bg-ink text-white hover:bg-ink/80`
+    : `${base} border border-ink text-ink hover:bg-ink hover:text-white`;
 }
 
 export function ButtonLink({
@@ -44,8 +44,14 @@ export function ButtonLink({
   );
 }
 
+/** Small grey label with a square bullet, as on the reference's section heads. */
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="text-[15px] text-muted">{children}</p>;
+  return (
+    <p className="flex items-center gap-2 text-[13px] text-muted">
+      <span aria-hidden className="size-1.5 bg-ink" />
+      {children}
+    </p>
+  );
 }
 
 export function SectionHead({
@@ -63,7 +69,9 @@ export function SectionHead({
     <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <div className="flex max-w-2xl flex-col gap-4">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">{title}</h2>
+        <h2 className="text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-[3.4rem]">
+          {title}
+        </h2>
         {body ? <p className="max-w-xl leading-relaxed text-muted">{body}</p> : null}
       </div>
       {aside}
@@ -74,7 +82,9 @@ export function SectionHead({
 export function Section({ id, children, className = "" }: { id: string; children: ReactNode; className?: string }) {
   return (
     <section id={id} className={className}>
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 sm:px-8 sm:py-28">{children}</div>
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 border-t border-line px-5 py-20 sm:px-8 sm:py-24">
+        {children}
+      </div>
     </section>
   );
 }

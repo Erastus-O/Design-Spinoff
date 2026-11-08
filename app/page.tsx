@@ -26,82 +26,85 @@ export default function Home() {
 
 /* ---------- Hero ---------- */
 
-/** The stacked topic blocks from the reference, sitting at the foot of a grey card. */
-function TopicStack({ className = "" }: { className?: string }) {
-  // Accessibility sits on top, Design and Design Engineering share a row.
-  const rows = [["accessibility"], ["design", "design-engineering"], ["ai"], ["vibecoding"]] as const;
-  let delay = 0;
+/** A small rounded image set into a line of headline text, as in the reference. */
+function InlineChip({ src, alt, className = "" }: { src?: string; alt?: string; className?: string }) {
   return (
-    <div className={`relative flex flex-col ${className}`}>
-      {rows.map((row, r) => (
-        <div key={r} className="relative h-[clamp(2.25rem,6vw,3.1rem)]">
-          {row.map((id) => {
-            const t = topicById(id);
-            delay += 1;
-            return (
-              <a
-                key={id}
-                href={`#topic-${id}`}
-                className="drop-in absolute inset-y-0 flex items-center px-[clamp(0.75rem,2.5vw,1.9rem)] text-[clamp(0.95rem,2.2vw,1.55rem)] text-white transition-[filter] hover:brightness-110"
-                style={{
-                  left: `${t.bar.left}%`,
-                  width: `${t.bar.width}%`,
-                  background: t.color,
-                  justifyContent:
-                    t.bar.align === "start" ? "flex-start" : t.bar.align === "end" ? "flex-end" : "center",
-                  animationDelay: `${0.25 + (5 - delay) * 0.12}s`,
-                }}
-              >
-                <span className="truncate">{t.name}</span>
-              </a>
-            );
-          })}
-        </div>
-      ))}
-    </div>
+    <span
+      className={`relative mx-[0.08em] inline-block h-[0.78em] w-[1.05em] overflow-hidden rounded-[0.14em] align-[-0.06em] ${className}`}
+    >
+      {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt={alt ?? ""} className="absolute inset-0 h-full w-full object-cover" />
+      ) : null}
+    </span>
   );
 }
 
 function Hero() {
   return (
     <section aria-labelledby="hero-title">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 pt-12 pb-20 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:gap-16 md:pt-20 md:pb-28">
-        <div className="flex flex-col items-start gap-6">
-          <p className="text-[15px] text-muted">{hero.eyebrow}</p>
-          <h1
-            id="hero-title"
-            className="text-[2.4rem] leading-[1.12] font-bold tracking-tight text-balance sm:text-5xl lg:text-[3.4rem]"
-          >
-            {hero.title}
-          </h1>
-          <p className="max-w-md text-[15px] leading-relaxed text-muted">{hero.body}</p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <ButtonLink href={routes.tickets}>Register</ButtonLink>
-            <ButtonLink href="#contact" variant="outline">
-              Become a sponsor
-            </ButtonLink>
-          </div>
-          <dl className="mt-6 grid w-full max-w-md grid-cols-2 gap-x-8 gap-y-4 text-sm">
-            {[
-              ["When", event.date],
-              ["Where", event.city],
-            ].map(([k, v]) => (
-              <div key={k} className="flex flex-col gap-1">
-                <dt className="text-xs text-muted">{k}</dt>
-                <dd className="font-medium">{v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-7 px-5 pt-14 pb-16 text-center sm:px-8 md:pt-20 md:pb-20">
+        <p className="flex items-center gap-2 text-[13px] text-muted">
+          <span aria-hidden className="size-1.5 bg-ink" />
+          {hero.eyebrow} · {event.city} · {event.edition}
+        </p>
+        <h1
+          id="hero-title"
+          className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[5.2rem]"
+        >
+          Exploring the <InlineChip src="/images/2025-panel.webp" alt="" /> design landscape in today’s{" "}
+          <InlineChip className="bg-px-green" /> industry
+        </h1>
+        <p className="max-w-xl text-[15px] leading-relaxed text-muted">{hero.body}</p>
 
-        <div className="relative flex aspect-[588/717] max-w-full flex-col justify-between overflow-hidden rounded-3xl bg-mist">
-          <div className="flex flex-col gap-1 p-6 sm:p-8">
-            <p className="text-xs text-muted">Expected venue</p>
-            <p className="text-lg font-semibold">{event.venue}</p>
-            <p className="text-sm text-muted">{event.city}</p>
-          </div>
-          <TopicStack />
-        </div>
+        {/* The reference's prompt box, here a quick way into registration. */}
+        <form action={routes.tickets} method="get" className="mt-4 flex w-full max-w-3xl items-stretch gap-2 text-left">
+          <label className="flex min-h-36 flex-1 flex-col justify-between rounded-md bg-mist p-4 sm:p-5">
+            <span className="text-[13px] text-muted">Reserve your seat for Design Spin-off 2027</span>
+            <input
+              type="email"
+              name="email"
+              required
+              autoComplete="email"
+              placeholder="you@studio.com"
+              className="w-full border-b border-ink/20 bg-transparent pb-1 text-lg placeholder:text-ink/30 focus:border-ink focus:outline-none sm:text-xl"
+            />
+          </label>
+          <button
+            type="submit"
+            aria-label="Continue to tickets"
+            className="grid w-24 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-36"
+          >
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
+            </svg>
+          </button>
+        </form>
+        <ul className="-mt-3 flex w-full max-w-3xl flex-wrap gap-1.5" aria-label="Topics">
+          {topics.map((t) => (
+            <li key={t.id}>
+              <a
+                href={`#topic-${t.id}`}
+                className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
+                style={{ background: t.color }}
+              >
+                {t.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <dl className="mt-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-[13px]">
+          {[
+            ["When", event.date],
+            ["Expected venue", event.venue],
+            ["Format", event.format],
+          ].map(([k, v]) => (
+            <div key={k} className="flex gap-2">
+              <dt className="text-muted">{k}</dt>
+              <dd className="font-medium">{v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
@@ -172,7 +175,7 @@ function Partners() {
 
 function Topics() {
   return (
-    <Section id="topics" className="bg-mist">
+    <Section id="topics">
       <SectionHead
         eyebrow="Key design topics"
         title="Five forces reshaping design work"
@@ -185,7 +188,7 @@ function Topics() {
             key={t.id}
             id={`topic-${t.id}`}
             delay={i * 90}
-            className="group flex scroll-mt-24 flex-col gap-5 rounded-2xl bg-paper p-7"
+            className="group flex scroll-mt-24 flex-col gap-5 rounded-lg border border-line bg-card p-7"
           >
             <Reveal
               as="span"
@@ -202,7 +205,7 @@ function Topics() {
         <Reveal
           as="li"
           delay={topics.length * 90}
-          className="flex flex-col justify-between gap-6 rounded-2xl bg-indigo p-7 text-white"
+          className="flex flex-col justify-between gap-6 rounded-lg bg-indigo p-7 text-white"
         >
           <h3 className="text-xl font-semibold tracking-tight">See how the five topics fill the day</h3>
           <a href="#agenda" className="w-fit text-sm font-medium underline underline-offset-4">
@@ -234,7 +237,7 @@ function Speakers() {
           const t = topicById(s.topic);
           return (
             <Reveal as="li" key={i} delay={(i % 4) * 90} className="group flex flex-col gap-4">
-              <div className="relative flex aspect-square max-w-full flex-col justify-end overflow-hidden rounded-2xl bg-mist">
+              <div className="relative flex aspect-square max-w-full flex-col justify-end overflow-hidden rounded-lg bg-mist">
                 <Reveal
                   as="span"
                   variant="drop"
@@ -261,7 +264,7 @@ function Speakers() {
 
 function Agenda() {
   return (
-    <Section id="agenda" className="bg-mist">
+    <Section id="agenda">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div className="flex flex-col gap-6 self-start lg:sticky lg:top-24">
           <SectionHead
@@ -271,7 +274,7 @@ function Agenda() {
           />
           <Draft>Draft programme</Draft>
         </div>
-        <ol className="flex flex-col overflow-hidden rounded-2xl bg-paper">
+        <ol className="flex flex-col overflow-hidden rounded-lg border border-line bg-card">
           {agenda.map((item, i) => (
             <Reveal
               as="li"
@@ -297,7 +300,7 @@ function Agenda() {
 function TicketsTeaser() {
   return (
     <Section id="tickets">
-      <div className="flex flex-col gap-8 rounded-3xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
+      <div className="flex flex-col gap-8 rounded-xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
         <div className="flex max-w-xl flex-col gap-4">
           <p className="text-[15px] text-white/70">Tickets</p>
           <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">
@@ -365,7 +368,7 @@ function Faqs() {
 function Contact() {
   return (
     <Section id="contact">
-      <div className="grid gap-12 rounded-3xl bg-mist p-6 sm:p-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+      <div className="grid gap-12 rounded-xl border border-line bg-card p-6 sm:p-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
         <div className="flex flex-col gap-8">
           <SectionHead
             eyebrow="Contact us"

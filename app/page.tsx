@@ -151,7 +151,7 @@ function Partners() {
   const loop = Array.from({ length: Math.ceil(12 / items.length) }, () => items).flat();
   return (
     <section id="partners" aria-labelledby="partners-title" className="scroll-mt-20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 border-y border-line px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:gap-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:gap-16">
         <div className="flex shrink-0 flex-col gap-1 lg:w-56">
           <h2 id="partners-title" className="text-[13px] leading-snug text-muted">
             Hosted by Sections, with our 2027 partners and sponsors
@@ -201,7 +201,7 @@ function Partners() {
 
 function Dilemma() {
   return (
-    <Section id="dilemma">
+    <Section id="dilemma" rule={false}>
       <SectionHead
         eyebrow="The Designer’s Dilemma"
         title="Who designs now?"

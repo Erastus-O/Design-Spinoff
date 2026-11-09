@@ -101,10 +101,23 @@ export function SectionHead({
   );
 }
 
-export function Section({ id, children, className = "" }: { id: string; children: ReactNode; className?: string }) {
+export function Section({
+  id,
+  children,
+  className = "",
+  rule = true,
+}: {
+  id: string;
+  children: ReactNode;
+  className?: string;
+  /** The thin rule above the section; off where the section follows the partner strip. */
+  rule?: boolean;
+}) {
   return (
     <section id={id} className={className}>
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 border-t border-line px-5 py-20 sm:px-8 sm:py-24">
+      <div
+        className={`mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 sm:px-8 sm:py-24 ${rule ? "border-t border-line" : ""}`}
+      >
         {children}
       </div>
     </section>

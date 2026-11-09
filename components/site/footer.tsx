@@ -53,14 +53,17 @@ export function Footer() {
         <div className="relative isolate flex min-w-0 flex-1 flex-col justify-end gap-6 overflow-hidden px-5 pt-12 pb-6 sm:px-8">
           {/* The 2027 campaign gradient behind the wordmark. */}
           <Image src="/images/gradient.webp" alt="" fill sizes="100vw" className="-z-10 object-cover" />
-          <p
-            aria-hidden
-            className="text-[clamp(4rem,17vw,15rem)] leading-[0.98] font-normal tracking-[-0.04em] text-ink"
-          >
-            Spin-
-            <br />
-            off.
-          </p>
+          {/* Sized to the band: with optical size pinned at 144, "Spin-off." is
+              3.0em wide, so 33.2% of the container's width runs it edge to edge
+              at every screen width. */}
+          <div className="@container w-full">
+            <p
+              aria-hidden
+              className="text-[33.2cqw] leading-[1.05] font-normal tracking-[-0.04em] whitespace-nowrap text-ink [font-variation-settings:'opsz'_144]"
+            >
+              Spin-off.
+            </p>
+          </div>
           <p className="text-[12px] text-ink/70">© 2026 Sections. Design Spin-off is a Sections event.</p>
         </div>
         <a

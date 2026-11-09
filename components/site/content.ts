@@ -96,17 +96,6 @@ export const stats2025 = [
   { value: "50,000+", label: "Content impressions" },
 ];
 
-// Teams the 2025 (Lagos) speakers came from.
-export const speakerOrgs2025 = [
-  "Kimoyo Insights",
-  "AI Nova",
-  "Treepz",
-  "Piggyvest",
-  "Paystack",
-  "Multigate",
-  "Africhange",
-];
-
 // TBA: 2027 speakers, one per topic. Add `name` and `role` as each is
 // confirmed; until then the card reads "Name to be announced".
 export const speakerSlots: { topic: TopicId; format: string; photo: string; name?: string; role?: string }[] = [
@@ -201,21 +190,6 @@ export const faqs = [
     a: "Yes. Teams of five or more get 15% off General tickets. Choose Tickets in the contact form and we’ll send an invoice.",
   },
 ];
-
-// Design Spin-off 2025 (Lagos), from the 2025 partner deck. Used on the
-// Journey page.
-export const recap2025 = {
-  speakers: [
-    { name: "Namnso Ukpanah", role: "Chief Design Officer", org: "Kimoyo Insights" },
-    { name: "Damilare Fakorede", role: "Founder", org: "AI Nova" },
-    { name: "Isreal Sobaloju", role: "Design Lead", org: "Treepz" },
-    { name: "Azeez Adeniran", role: "Engineering Manager", org: "Piggyvest" },
-    { name: "Frank Ikemefuna", role: "Global Influence", org: "Creative Economy" },
-    { name: "Samuel Adehoun", role: "Product Manager", org: "Paystack" },
-    { name: "Kehinde Titiloye", role: "Head, Financial Crimes Ops", org: "Multigate" },
-    { name: "Emmanuel Faith", role: "HR Manager", org: "Africhange" },
-  ],
-};
 
 // Journey carousel: one card per chapter of the 2025 edition. Each card
 // carries the headline number shown beside the carousel while it is active.

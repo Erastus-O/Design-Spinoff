@@ -52,8 +52,10 @@ export default function Home() {
 // the speakers in greyscale strips over the gradient on the right.
 function Hero() {
   return (
-    <section aria-labelledby="hero-title" className="px-2 sm:px-4">
-      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-xl border border-line bg-card lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+    <section aria-labelledby="hero-title" className="mx-auto max-w-6xl px-5 pt-3 sm:px-8">
+      {/* Same container and gutters as the header and every section, so the
+          card's edges line up with the logo, the nav and the content below. */}
+      <div className="grid overflow-hidden rounded-xl border border-line bg-card lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <div className="flex flex-col gap-7 px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:py-14">
           <p className="text-[15px] text-muted">{hero.title}</p>
           <h1

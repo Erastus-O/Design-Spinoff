@@ -257,22 +257,3 @@ export const journeyCards = [
     stat: { value: "6", label: "Sponsors and partners" },
   },
 ];
-
-// The opening hook from the 2027 talk outline: two numbers that seem to
-// disagree. Sources as cited in the outline.
-export const dilemma = {
-  numbers: [
-    { value: "82%", label: "of hiring leaders say their need for designers has held steady or grown", source: "Figma" },
-    { value: "57%", label: "fall in graphic design job postings worldwide over the past year", source: "Via News" },
-  ],
-  line: "Both of these are true. Design Spin-off 2027 is about why.",
-  takeaways: [
-    {
-      title: "Own the decision, not the deliverable",
-      body: "Taste, research and judgement are what clients still pay for.",
-    },
-    { title: "Build systems, not just screens", body: "Design systems, prompt frameworks and trust patterns." },
-    { title: "Learn the rules", body: "Accessibility and copyright are now part of design work." },
-  ],
-  close: "AI can generate a thousand options. Someone still has to decide which one is right, and why.",
-};

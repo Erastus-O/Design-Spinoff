@@ -64,13 +64,13 @@ function Hero() {
           >
             The Designer’s Dilemma
           </h1>
-          <TopicRule className="max-w-lg" />
           <div className="flex flex-col gap-1 text-sm">
             <p className="font-semibold">
               {event.date} · {event.venue.split(",")[0]}, {event.city.split(",")[0]}
             </p>
             <p className="text-muted">{event.watchParty}</p>
           </div>
+          <TopicRule className="max-w-lg" />
           <p className="max-w-lg text-[15px] leading-relaxed text-muted">{hero.body}</p>
 
           {/* The reference's prompt box, here a quick way into registration. */}

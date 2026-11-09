@@ -9,12 +9,13 @@ export const event = {
   organiserUrl: "https://hellosections.framer.website",
   theme: "The Designer’s Dilemma",
   // TBA: confirm date. Venue is the expected host, not yet confirmed.
-  date: "2027 · Date TBA",
+  date: "June 2027",
+  watchParty: "Watch party in Lagos, Nigeria",
   city: "London, UK",
   venue: "Design District, Greenwich Peninsula",
   format: "One day, in person",
   // TBA: add a public inbox. The contact section hides the address while empty.
-  contactEmail: "",
+  contactEmail: "hellosections@gmail.com",
 };
 
 // Page links. The static preview build (NEXT_PUBLIC_STATIC_PREVIEW=1) is served
@@ -173,7 +174,7 @@ export const faqs = [
   },
   {
     q: "Where is it happening?",
-    a: "We’re planning to host Design Spin-off 2027 at Design District on the Greenwich Peninsula in London. The venue and date are confirmed by email to everyone who registers.",
+    a: "Design Spin-off 2027 takes place in June 2027 at Design District on the Greenwich Peninsula in London, with a watch party in Lagos, Nigeria. The exact date is confirmed by email to everyone who registers.",
   },
   {
     q: "How do I get there?",

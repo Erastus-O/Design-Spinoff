@@ -30,10 +30,11 @@ export function Footer() {
     <footer className="mt-10">
       <div className="mx-auto grid max-w-6xl gap-10 border-t border-line px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_repeat(3,1fr)]">
         <div className="flex flex-col gap-4">
-          <Wordmark className="h-11" />
+          <Wordmark badge className="h-12 self-start" />
           <p className="max-w-xs text-[13px] leading-relaxed text-muted">
-            {event.theme}. {event.date}, {event.venue}, {event.city}.
+            {event.theme}. {event.date}, {event.venue}, {event.city}. {event.watchParty}.
           </p>
+          <p className="text-[13px] font-medium select-all">{event.contactEmail}</p>
         </div>
         {columns.map((col) => (
           <nav key={col.title} aria-label={col.title} className="flex flex-col gap-2.5 text-[13px]">

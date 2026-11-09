@@ -23,7 +23,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-5 sm:gap-8 sm:px-8">
         <a href={homeAnchor("top")} aria-label={`${event.name} ${event.edition}, back to top`}>
-          <Wordmark />
+          <Wordmark badge className="h-11" />
         </a>
         <nav aria-label="Sections" className="hidden items-center gap-7 text-sm lg:flex">
           {nav.map((item) => (

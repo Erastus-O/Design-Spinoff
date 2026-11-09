@@ -1,16 +1,38 @@
 import type { ReactNode } from "react";
 import { topics, type TopicId } from "./content";
 
-export function Wordmark({ className = "h-9" }: { className?: string }) {
-  return (
+/**
+ * The Design Spin-off logo. `badge` sets it white in the black speech-bubble
+ * badge used across the 2027 campaign artwork.
+ */
+export function Wordmark({ className = "h-9", badge = false }: { className?: string; badge?: boolean }) {
+  const logo = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src="/images/design-spin-off-logo.png"
       alt="Design Spin-off by Sections"
       width={301}
       height={84}
-      className={`w-auto ${className}`}
+      className={badge ? "h-full w-auto invert" : `w-auto ${className}`}
     />
+  );
+  if (!badge) return logo;
+  return (
+    <span className={`relative inline-flex items-center rounded-[10px] bg-ink px-3 py-1.5 ${className}`}>
+      {logo}
+      <span aria-hidden className="absolute -bottom-1 left-1/2 size-2.5 -translate-x-1/2 rotate-45 bg-ink" />
+    </span>
+  );
+}
+
+/** The thin multicolour rule from the campaign artwork: one segment per topic. */
+export function TopicRule({ className = "" }: { className?: string }) {
+  return (
+    <span aria-hidden className={`flex h-[3px] w-full ${className}`}>
+      {topics.map((t) => (
+        <span key={t.id} className="flex-1" style={{ background: t.color }} />
+      ))}
+    </span>
   );
 }
 

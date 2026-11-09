@@ -15,7 +15,16 @@ import { ContactForm } from "@/components/site/forms";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
 import { Reveal } from "@/components/site/reveal";
-import { ButtonLink, Draft, Section, SectionHead, TopicChip, topicById } from "@/components/site/primitives";
+import {
+  ButtonLink,
+  Draft,
+  Section,
+  SectionHead,
+  TopicChip,
+  TopicRule,
+  Wordmark,
+  topicById,
+} from "@/components/site/primitives";
 
 export default function Home() {
   return (
@@ -39,85 +48,87 @@ export default function Home() {
 
 /* ---------- Hero ---------- */
 
-/** A small rounded image set into a line of headline text, as in the reference. */
-function InlineChip({ src, alt, className = "" }: { src?: string; alt?: string; className?: string }) {
-  return (
-    <span
-      className={`relative mx-[0.08em] inline-block h-[0.78em] w-[1.05em] overflow-hidden rounded-[0.14em] align-[-0.06em] ${className}`}
-    >
-      {src ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={src} alt={alt ?? ""} className="absolute inset-0 h-full w-full object-cover" />
-      ) : null}
-    </span>
-  );
-}
-
+// After the 2027 campaign artwork: title, multicolour rule and date on the left;
+// the speakers in greyscale strips over the gradient on the right.
 function Hero() {
   return (
-    <section aria-labelledby="hero-title">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-7 px-5 pt-14 pb-16 text-center sm:px-8 md:pt-20 md:pb-20">
-        <p className="flex items-center gap-2 text-[13px] text-muted">
-          <span aria-hidden className="size-1.5 bg-ink" />
-          {hero.eyebrow} · {event.city} · {event.edition}
-        </p>
-        <h1
-          id="hero-title"
-          className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.2rem]"
-        >
-          Exploring the <InlineChip src="/images/2025-panel.webp" alt="" /> design landscape in today’s{" "}
-          <InlineChip className="bg-px-green" /> industry
-        </h1>
-        <p className="max-w-xl text-[15px] leading-relaxed text-muted">{hero.body}</p>
-
-        {/* The reference's prompt box, here a quick way into registration. */}
-        <form action={routes.tickets} method="get" className="mt-4 flex w-full max-w-3xl items-stretch gap-2 text-left">
-          <label className="flex min-h-36 flex-1 flex-col justify-between rounded-md bg-mist p-4 sm:p-5">
-            <span className="text-[13px] text-muted">Reserve your seat for Design Spin-off 2027</span>
-            <input
-              type="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder="you@studio.com"
-              className="w-full border-b border-ink/20 bg-transparent pb-1 text-lg placeholder:text-ink/30 focus:border-ink focus:outline-none sm:text-xl"
-            />
-          </label>
-          <button
-            type="submit"
-            aria-label="Continue to tickets"
-            className="grid w-24 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-36"
+    <section aria-labelledby="hero-title" className="px-2 sm:px-4">
+      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-xl border border-line bg-card lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="flex flex-col gap-7 px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:py-14">
+          <p className="text-[15px] text-muted">{hero.title}</p>
+          <h1
+            id="hero-title"
+            className="text-[3.2rem] leading-[0.95] font-normal tracking-[-0.03em] text-balance sm:text-7xl lg:text-[5.6rem]"
           >
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
-            </svg>
-          </button>
-        </form>
-        <ul className="-mt-3 flex w-full max-w-3xl flex-wrap gap-1.5" aria-label="Topics">
-          {topics.map((t) => (
-            <li key={t.id}>
-              <a
-                href={`#topic-${t.id}`}
-                className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
-                style={{ background: t.color }}
+            The Designer’s Dilemma
+          </h1>
+          <TopicRule className="max-w-lg" />
+          <div className="flex flex-col gap-1 text-sm">
+            <p className="font-semibold">
+              {event.date} · {event.venue.split(",")[0]}, {event.city.split(",")[0]}
+            </p>
+            <p className="text-muted">{event.watchParty}</p>
+          </div>
+          <p className="max-w-lg text-[15px] leading-relaxed text-muted">{hero.body}</p>
+
+          {/* The reference's prompt box, here a quick way into registration. */}
+          <form action={routes.tickets} method="get" className="flex w-full max-w-xl items-stretch gap-2">
+            <label className="flex min-h-28 flex-1 flex-col justify-between rounded-md bg-mist p-4">
+              <span className="text-[13px] text-muted">Reserve your seat for Design Spin-off 2027</span>
+              <input
+                type="email"
+                name="email"
+                required
+                autoComplete="email"
+                placeholder="you@studio.com"
+                className="w-full border-b border-ink/20 bg-transparent pb-1 text-lg placeholder:text-ink/30 focus:border-ink focus:outline-none"
+              />
+            </label>
+            <button
+              type="submit"
+              aria-label="Continue to tickets"
+              className="grid w-20 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-28"
+            >
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
+              </svg>
+            </button>
+          </form>
+          <ul className="-mt-4 flex flex-wrap gap-1.5" aria-label="Topics">
+            {topics.map((t) => (
+              <li key={t.id}>
+                <a
+                  href={`#topic-${t.id}`}
+                  className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
+                  style={{ background: t.color }}
+                >
+                  {t.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="relative isolate min-h-[22rem] overflow-hidden sm:min-h-[28rem]">
+          <Image src="/images/gradient.webp" alt="" fill priority sizes="50vw" className="-z-10 object-cover" />
+          <div className="absolute inset-x-0 bottom-0 flex h-[78%] items-end gap-1 px-4 sm:px-6">
+            {speakerSlots.map((s, i) => (
+              <div
+                key={s.photo}
+                className={`relative min-w-0 flex-1 overflow-hidden rounded-t-md ${i % 2 ? "h-[88%]" : "h-full"}`}
               >
-                {t.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <dl className="mt-4 flex flex-wrap justify-center gap-x-10 gap-y-3 text-[13px]">
-          {[
-            ["When", event.date],
-            ["Expected venue", event.venue],
-            ["Format", event.format],
-          ].map(([k, v]) => (
-            <div key={k} className="flex gap-2">
-              <dt className="text-muted">{k}</dt>
-              <dd className="font-medium">{v}</dd>
-            </div>
-          ))}
-        </dl>
+                <Image
+                  src={s.photo}
+                  alt=""
+                  fill
+                  sizes="12vw"
+                  className="object-cover grayscale contrast-110"
+                  priority
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -301,7 +312,7 @@ function Speakers() {
                   alt={s.name ? s.name : `Speaker for ${t.name}, name to be announced`}
                   fill
                   sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
                 <Reveal
                   as="span"
@@ -365,19 +376,20 @@ function Agenda() {
 function TicketsTeaser() {
   return (
     <Section id="tickets">
-      <div className="flex flex-col gap-8 rounded-xl bg-indigo p-8 text-white sm:p-12 md:flex-row md:items-end md:justify-between">
+      <div className="relative isolate flex flex-col gap-8 overflow-hidden rounded-xl p-8 sm:p-12 md:flex-row md:items-end md:justify-between">
+        <Image src="/images/gradient.webp" alt="" fill sizes="100vw" className="-z-10 object-cover object-left" />
         <div className="flex max-w-xl flex-col gap-4">
-          <p className="text-[15px] text-white/70">Tickets</p>
-          <h2 className="text-3xl leading-[1.15] font-bold tracking-tight text-balance sm:text-[2.6rem]">
+          <Wordmark badge className="h-10 self-start" />
+          <h2 className="mt-4 text-4xl leading-[1] font-normal tracking-[-0.03em] text-balance sm:text-6xl">
             Seats from {tickets[0].price}
           </h2>
-          <p className="leading-relaxed text-white/80">
+          <p className="leading-relaxed text-ink/80">
             {tickets.map((t) => `${t.name} ${t.price}`).join(" · ")}. Early-bird General tickets are limited.
           </p>
         </div>
         <a
           href={routes.tickets}
-          className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-sm font-medium whitespace-nowrap text-indigo transition-colors hover:bg-white/90"
+          className="inline-flex h-12 items-center justify-center rounded-md bg-ink px-8 text-sm font-medium whitespace-nowrap text-white transition-colors hover:bg-ink/80"
         >
           See tickets and register
         </a>

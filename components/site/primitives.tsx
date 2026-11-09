@@ -69,7 +69,7 @@ export function SectionHead({
     <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <div className="flex max-w-2xl flex-col gap-4">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-[3.4rem]">
+        <h2 className="text-4xl leading-[1.02] font-semibold tracking-[-0.022em] text-balance sm:text-[3.4rem]">
           {title}
         </h2>
         {body ? <p className="max-w-xl leading-relaxed text-muted">{body}</p> : null}

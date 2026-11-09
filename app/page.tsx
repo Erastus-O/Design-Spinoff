@@ -63,7 +63,7 @@ function Hero() {
         </p>
         <h1
           id="hero-title"
-          className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-6xl lg:text-[5.2rem]"
+          className="text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.2rem]"
         >
           Exploring the <InlineChip src="/images/2025-panel.webp" alt="" /> design landscape in today’s{" "}
           <InlineChip className="bg-px-green" /> industry
@@ -201,7 +201,7 @@ function Dilemma() {
             delay={i * 120}
             className="flex flex-col gap-4 rounded-lg border border-line bg-card p-7 sm:p-9"
           >
-            <p className="text-7xl font-semibold tracking-[-0.05em] tabular-nums sm:text-8xl">{n.value}</p>
+            <p className="text-7xl font-semibold tracking-[-0.035em] tabular-nums sm:text-8xl">{n.value}</p>
             <p className="max-w-sm text-[15px] leading-relaxed">{n.label}</p>
             <p className="text-[12px] text-muted">Source: {n.source}</p>
           </Reveal>

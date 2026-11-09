@@ -27,7 +27,7 @@
   --color-crimson: #c8102e;
   --color-salmon: #ffa896;
 
-  --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-sans: var(--font-google-sans-flex), system-ui, sans-serif;
   --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
 }
 

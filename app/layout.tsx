@@ -3,10 +3,12 @@ import { Silkscreen } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const sora = localFont({
-  src: "./fonts/Sora-VariableFont_wght.ttf",
-  weight: "100 800",
-  variable: "--font-sora",
+// Google Sans Flex, trimmed to the axes the site uses (optical size and weight)
+// and to Latin, from the supplied variable font. OFL licence in app/fonts.
+const googleSansFlex = localFont({
+  src: "./fonts/GoogleSansFlex-Variable.woff2",
+  weight: "100 900",
+  variable: "--font-google-sans-flex",
 });
 
 // Pixel face for the footer wordmark and edge-strip labels.
@@ -24,7 +26,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${silkscreen.variable}`}>
+    <html lang="en" className={`${googleSansFlex.variable} ${silkscreen.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

@@ -56,7 +56,7 @@ function Hero() {
       {/* Same container and gutters as the header and every section, so the
           card's edges line up with the logo, the nav and the content below. */}
       <div className="grid overflow-hidden rounded-xl border border-line bg-card lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <div className="flex flex-col gap-7 px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:py-14">
+        <div className="flex flex-col justify-center gap-7 px-6 pt-10 pb-10 sm:px-10 sm:pt-14 lg:py-14">
           <p className="text-[15px] text-muted">{hero.title}</p>
           <h1
             id="hero-title"
@@ -71,44 +71,6 @@ function Hero() {
             <p className="text-muted">{event.watchParty}</p>
           </div>
           <TopicRule className="max-w-lg" />
-          <p className="max-w-lg text-[15px] leading-relaxed text-muted">{hero.body}</p>
-
-          {/* The reference's prompt box, here a quick way into registration. */}
-          <form action={routes.tickets} method="get" className="flex w-full max-w-xl items-stretch gap-2">
-            <label className="flex min-h-28 flex-1 flex-col justify-between rounded-md bg-mist p-4">
-              <span className="text-[13px] text-muted">Reserve your seat for Design Spin-off 2027</span>
-              <input
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                placeholder="you@studio.com"
-                className="w-full border-b border-ink/20 bg-transparent pb-1 text-lg placeholder:text-ink/30 focus:border-ink focus:outline-none"
-              />
-            </label>
-            <button
-              type="submit"
-              aria-label="Continue to tickets"
-              className="grid w-20 shrink-0 place-items-center rounded-md bg-indigo text-white transition-colors hover:bg-indigo-dark sm:w-28"
-            >
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M12 20V5M5.5 11.5 12 5l6.5 6.5" stroke="currentColor" strokeWidth="2.2" />
-              </svg>
-            </button>
-          </form>
-          <ul className="-mt-4 flex flex-wrap gap-1.5" aria-label="Topics">
-            {topics.map((t) => (
-              <li key={t.id}>
-                <a
-                  href={`#topic-${t.id}`}
-                  className="inline-flex h-6 items-center px-2 text-[11px] font-medium text-white transition-[filter] hover:brightness-110"
-                  style={{ background: t.color }}
-                >
-                  {t.name}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="relative isolate min-h-[22rem] overflow-hidden sm:min-h-[28rem]">

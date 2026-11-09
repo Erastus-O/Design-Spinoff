@@ -28,7 +28,6 @@
   --color-salmon: #ffa896;
 
   --font-sans: var(--font-google-sans-flex), system-ui, sans-serif;
-  --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
 }
 
 html {

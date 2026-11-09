@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Silkscreen } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -11,8 +10,6 @@ const googleSansFlex = localFont({
   variable: "--font-google-sans-flex",
 });
 
-// Pixel face for the footer wordmark and edge-strip labels.
-const silkscreen = Silkscreen({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-silkscreen" });
 
 export const metadata: Metadata = {
   title: "Design Spin-off 2027",
@@ -26,7 +23,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${googleSansFlex.variable} ${silkscreen.variable}`}>
+    <html lang="en" className={googleSansFlex.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { event, homeAnchor, nav, routes } from "./content";
 import { Wordmark } from "./primitives";
 
@@ -48,17 +49,19 @@ export function Footer() {
         ))}
       </div>
 
-      <div className="flex bg-px-olive">
-        <div className="flex min-w-0 flex-1 flex-col justify-end gap-6 overflow-hidden px-5 pt-12 pb-6 sm:px-8">
+      <div className="flex">
+        <div className="relative isolate flex min-w-0 flex-1 flex-col justify-end gap-6 overflow-hidden px-5 pt-12 pb-6 sm:px-8">
+          {/* The 2027 campaign gradient behind the wordmark. */}
+          <Image src="/images/gradient.webp" alt="" fill sizes="100vw" className="-z-10 object-cover" />
           <p
             aria-hidden
-            className="font-pixel text-[clamp(3.6rem,15vw,13rem)] leading-[0.82] font-bold tracking-tight text-px-pink"
+            className="text-[clamp(4rem,17vw,15rem)] leading-[0.98] font-normal tracking-[-0.04em] text-ink"
           >
             Spin-
             <br />
             off.
           </p>
-          <p className="text-[12px] text-white/60">© 2026 Sections. Design Spin-off is a Sections event.</p>
+          <p className="text-[12px] text-ink/70">© 2026 Sections. Design Spin-off is a Sections event.</p>
         </div>
         <a
           href={routes.tickets}
